@@ -18,7 +18,7 @@ namespace Lab01_DHMT
         static Color color = Color.Black;
         static float size = 1.0f;                           /*thickness of shape*/
         static int chooseIcon;                              /*choose Shape icon*/
-        static polygon plg;                                 /*poligon*/
+        static polygon plg=new polygon();                      /*poligon*/
         static List<polygon> list_plg=new List<polygon>();  /*list poligon*/
         static bool mouseDown = false;
         static bool mouseLeft = false;
@@ -71,25 +71,26 @@ namespace Lab01_DHMT
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             gl.Color(color.R / 255.0, color.G / 255.0, color.B / 255.0);
 
-            if (mode == 1)//draw shape
-            {
-                var Item = Draw.Draw.chooseShape(openGLControl, chooseIcon, start, end, size, color);
-            }
-
-            else if (mode == 2 && mouseLeft == true)//draw polygon
-            {
-                plg.drawPolygon(openGLControl);
-            }
-            list_plg.ForEach(plgon => plgon.drawPolygon(openGLControl));
-
-            //draw shape           
-            Draw.Draw.DrawShape(openGLControl);
-
             //Adjust thickness of shapes
             if (!float.TryParse(tbSize.Text, out size))
             {
                 size = 1.0f;
             }
+            if (mode == 1)//draw shape
+            {
+                var Item = Draw.Draw.chooseShape(openGLControl, chooseIcon, start, end, size, color);
+            }
+
+            //draw polygon
+            else if (mode == 2)
+            {
+                if (mouseLeft == true)
+                    plg.drawPolygon(openGLControl, color, size);
+            }
+            list_plg.ForEach(plgon => plgon.drawPolygon(openGLControl, color, size));
+
+            //draw shape           
+            Draw.Draw.DrawShape(openGLControl);
 
             //print to textbox Time
             tbTime.Text = clock.Milliseconds.ToString() + " ms";            
@@ -117,7 +118,7 @@ namespace Lab01_DHMT
         }
         private void openGLControl_MouseUp(object sender, MouseEventArgs e)
         {
-           //press left mouse anhd draw shape
+           //press left mouse anh draw shape
             if (mode == 1 &&  e.Button==MouseButtons.Left)
             {
                 mouseDown = false;
@@ -202,12 +203,10 @@ namespace Lab01_DHMT
             start.X = -1;
             start.Y = -1;
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void polygon_icon_Click(object sender, EventArgs e)
         {
             mode = 2;
         }
-
         private void hexagol_icon_Click(object sender, EventArgs e)
         {
             chooseIcon = 7;
