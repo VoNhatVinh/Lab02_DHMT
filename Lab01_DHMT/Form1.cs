@@ -1,4 +1,5 @@
-﻿using SharpGL;
+﻿using Lab01_DHMT.Shapes;
+using SharpGL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,13 @@ namespace Lab01_DHMT
         static Color color = Color.Black;
         static float size = 1.0f;                           /*thickness of shape*/
         static int chooseIcon;                              /*choose Shape icon*/
+        static polygon plg;                                 /*poligon*/
+        static List<polygon> list_plg=new List<polygon>();  /*list poligon*/
         static bool mouseDown = false;
+        static bool mouseLeft = false;
+        int mode=1;
+        /*mode=1: draw shape; mode=2 draw polygon*/
+
 
         public Form1()
         {
@@ -62,10 +69,20 @@ namespace Lab01_DHMT
         {
             OpenGL gl = openGLControl.OpenGL;
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-            
-            //draw shape
-            var Item = Draw.Draw.chooseShape(openGLControl, chooseIcon, start, end, size, color);
             gl.Color(color.R / 255.0, color.G / 255.0, color.B / 255.0);
+
+            if (mode == 1)//draw shape
+            {
+                var Item = Draw.Draw.chooseShape(openGLControl, chooseIcon, start, end, size, color);
+            }
+
+            else if (mode == 2 && mouseLeft == true)//draw polygon
+            {
+                plg.drawPolygon(openGLControl);
+            }
+            list_plg.ForEach(plgon => plgon.drawPolygon(openGLControl));
+
+            //draw shape           
             Draw.Draw.DrawShape(openGLControl);
 
             //Adjust thickness of shapes
@@ -75,8 +92,7 @@ namespace Lab01_DHMT
             }
 
             //print to textbox Time
-            tbTime.Text = clock.Milliseconds.ToString() + " ms";
-            
+            tbTime.Text = clock.Milliseconds.ToString() + " ms";            
         }
 
 
@@ -101,9 +117,32 @@ namespace Lab01_DHMT
         }
         private void openGLControl_MouseUp(object sender, MouseEventArgs e)
         {
-            mouseDown = false;
-            end = e.Location;
-            clock = DateTime.Now.Subtract(startTime);
+           //press left mouse anhd draw shape
+            if (mode == 1 &&  e.Button==MouseButtons.Left)
+            {
+                mouseDown = false;
+                end = e.Location;
+                clock = DateTime.Now.Subtract(startTime);
+            }
+
+
+            if (mode == 2)//draw polygon
+            {
+                if (e.Button == MouseButtons.Right)
+                {                   
+                    list_plg.Add(plg);
+                    plg = new polygon();
+
+                    mouseLeft = false;
+                    clock += DateTime.Now.Subtract(startTime);
+                }else
+                if (e.Button == MouseButtons.Left)
+                {
+                    plg.addPoint(e.Location);
+                    mouseLeft = true;
+                    clock += DateTime.Now.Subtract(startTime);
+                }
+            }
 
             if (chooseIcon < 1)
                 clock = TimeSpan.Zero;
@@ -123,30 +162,35 @@ namespace Lab01_DHMT
         /*choose shape by Click event*/    
         private void line_Click(object sender, EventArgs e)
         {
+            mode = 1;
             chooseIcon = 1;
             start.X = -1;
             start.Y = -1;
         }
         private void circle_Click(object sender, EventArgs e)
         {
+            mode = 1;
             chooseIcon = 2;
             start.X = -1;
             start.Y = -1;
         }
         private void ellipse_Click(object sender, EventArgs e)
         {
+            mode = 1;
             chooseIcon = 3;
             start.X = -1;
             start.Y = -1;
         }
         private void rectangle_icon_Click(object sender, EventArgs e)
         {
+            mode = 1;
             chooseIcon = 4;
             start.X = -1;
             start.Y = -1;
         }
         private void triangle_icon_Click(object sender, EventArgs e)
         {
+            mode = 1;
             chooseIcon = 5;
             start.X = -1;
             start.Y = -1;
@@ -154,18 +198,20 @@ namespace Lab01_DHMT
         private void pentagol_icon_Click(object sender, EventArgs e)
         {
             chooseIcon = 6;
+            mode = 1;
             start.X = -1;
             start.Y = -1;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            mode = 2;
         }
 
         private void hexagol_icon_Click(object sender, EventArgs e)
         {
             chooseIcon = 7;
+            mode = 1;
             start.X = -1;
             start.Y = -1;
         }       

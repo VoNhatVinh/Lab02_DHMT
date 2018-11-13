@@ -76,6 +76,7 @@
     <Compile Include="Shapes\hexagon.cs" />
     <Compile Include="Shapes\Line.cs" />
     <Compile Include="Shapes\Pentagon.cs" />
+    <Compile Include="Shapes\polygon.cs" />
     <Compile Include="Shapes\Rectangle.cs" />
     <Compile Include="Shapes\Shape.cs" />
     <Compile Include="Shapes\Triangle.cs" />
@@ -112,6 +113,7 @@
     <None Include="Resources\Imagegroup.jpg" />
     <Content Include="Resources\line.png" />
     <Content Include="Resources\pentagol.png" />
+    <Content Include="Resources\polygon.png" />
     <Content Include="Resources\rectangle.png" />
     <Content Include="Resources\triangle.png" />
   </ItemGroup>

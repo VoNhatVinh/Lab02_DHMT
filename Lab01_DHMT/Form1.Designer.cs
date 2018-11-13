@@ -38,23 +38,13 @@
             this.lbSize = new System.Windows.Forms.Label();
             this.pnlTime = new System.Windows.Forms.Panel();
             this.tbTime = new System.Windows.Forms.TextBox();
-            this.time_icon = new System.Windows.Forms.PictureBox();
             this.lbTime = new System.Windows.Forms.Label();
             this.pnlColors = new System.Windows.Forms.Panel();
-            this.pictureColor = new System.Windows.Forms.PictureBox();
             this.lbColors = new System.Windows.Forms.Label();
             this.pnlShape = new System.Windows.Forms.Panel();
-            this.hexagol_icon = new System.Windows.Forms.PictureBox();
-            this.rectangle_icon = new System.Windows.Forms.PictureBox();
-            this.pentagol_icon = new System.Windows.Forms.PictureBox();
-            this.triangle_icon = new System.Windows.Forms.PictureBox();
-            this.circle_icon = new System.Windows.Forms.PictureBox();
-            this.ellipse_icon = new System.Windows.Forms.PictureBox();
-            this.line_icon = new System.Windows.Forms.PictureBox();
             this.lbShape = new System.Windows.Forms.Label();
             this.pnlControl = new System.Windows.Forms.Panel();
             this.groupName = new System.Windows.Forms.Label();
-            this.ptbGroupImage = new System.Windows.Forms.PictureBox();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.toolTipLine = new System.Windows.Forms.ToolTip(this.components);
@@ -67,16 +57,28 @@
             this.toolTipSize = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipColor = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipImageGroup = new System.Windows.Forms.ToolTip(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.time_icon = new System.Windows.Forms.PictureBox();
+            this.pictureColor = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.hexagol_icon = new System.Windows.Forms.PictureBox();
+            this.rectangle_icon = new System.Windows.Forms.PictureBox();
+            this.pentagol_icon = new System.Windows.Forms.PictureBox();
+            this.triangle_icon = new System.Windows.Forms.PictureBox();
+            this.circle_icon = new System.Windows.Forms.PictureBox();
+            this.ellipse_icon = new System.Windows.Forms.PictureBox();
+            this.line_icon = new System.Windows.Forms.PictureBox();
+            this.ptbGroupImage = new System.Windows.Forms.PictureBox();
             this.pnlMain.SuspendLayout();
             this.pnlDraw.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.pnlSize.SuspendLayout();
             this.pnlTime.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.time_icon)).BeginInit();
             this.pnlColors.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureColor)).BeginInit();
             this.pnlShape.SuspendLayout();
+            this.pnlControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.time_icon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hexagol_icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rectangle_icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pentagol_icon)).BeginInit();
@@ -84,7 +86,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.circle_icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ellipse_icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.line_icon)).BeginInit();
-            this.pnlControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbGroupImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,7 +104,7 @@
             this.pnlMain.Controls.Add(this.pnlControl);
             this.pnlMain.Location = new System.Drawing.Point(12, 12);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(975, 426);
+            this.pnlMain.Size = new System.Drawing.Size(1023, 426);
             this.pnlMain.TabIndex = 0;
             // 
             // pnlDraw
@@ -114,7 +115,7 @@
             this.pnlDraw.Controls.Add(this.openGLControl);
             this.pnlDraw.Location = new System.Drawing.Point(4, 94);
             this.pnlDraw.Name = "pnlDraw";
-            this.pnlDraw.Size = new System.Drawing.Size(964, 325);
+            this.pnlDraw.Size = new System.Drawing.Size(1012, 325);
             this.pnlDraw.TabIndex = 5;
             // 
             // openGLControl
@@ -130,7 +131,7 @@
             this.openGLControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControl.RenderContextType = SharpGL.RenderContextType.DIBSection;
             this.openGLControl.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
-            this.openGLControl.Size = new System.Drawing.Size(964, 312);
+            this.openGLControl.Size = new System.Drawing.Size(1012, 312);
             this.openGLControl.TabIndex = 0;
             this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
             this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
@@ -144,7 +145,7 @@
             this.pnlSize.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlSize.Controls.Add(this.tbSize);
             this.pnlSize.Controls.Add(this.lbSize);
-            this.pnlSize.Location = new System.Drawing.Point(509, 3);
+            this.pnlSize.Location = new System.Drawing.Point(556, 3);
             this.pnlSize.Name = "pnlSize";
             this.pnlSize.Size = new System.Drawing.Size(79, 79);
             this.pnlSize.TabIndex = 2;
@@ -177,7 +178,7 @@
             this.pnlTime.Controls.Add(this.tbTime);
             this.pnlTime.Controls.Add(this.time_icon);
             this.pnlTime.Controls.Add(this.lbTime);
-            this.pnlTime.Location = new System.Drawing.Point(778, 4);
+            this.pnlTime.Location = new System.Drawing.Point(826, 4);
             this.pnlTime.Name = "pnlTime";
             this.pnlTime.Size = new System.Drawing.Size(190, 80);
             this.pnlTime.TabIndex = 4;
@@ -188,17 +189,6 @@
             this.tbTime.Name = "tbTime";
             this.tbTime.Size = new System.Drawing.Size(100, 20);
             this.tbTime.TabIndex = 3;
-            // 
-            // time_icon
-            // 
-            this.time_icon.BackColor = System.Drawing.Color.White;
-            this.time_icon.Image = ((System.Drawing.Image)(resources.GetObject("time_icon.Image")));
-            this.time_icon.Location = new System.Drawing.Point(0, 0);
-            this.time_icon.Name = "time_icon";
-            this.time_icon.Size = new System.Drawing.Size(69, 58);
-            this.time_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.time_icon.TabIndex = 2;
-            this.time_icon.TabStop = false;
             // 
             // lbTime
             // 
@@ -215,30 +205,17 @@
             this.pnlColors.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlColors.Controls.Add(this.pictureColor);
             this.pnlColors.Controls.Add(this.lbColors);
-            this.pnlColors.Location = new System.Drawing.Point(598, 3);
+            this.pnlColors.Location = new System.Drawing.Point(641, 3);
             this.pnlColors.Name = "pnlColors";
-            this.pnlColors.Size = new System.Drawing.Size(174, 81);
+            this.pnlColors.Size = new System.Drawing.Size(179, 81);
             this.pnlColors.TabIndex = 3;
-            // 
-            // pictureColor
-            // 
-            this.pictureColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureColor.Image = ((System.Drawing.Image)(resources.GetObject("pictureColor.Image")));
-            this.pictureColor.Location = new System.Drawing.Point(56, -1);
-            this.pictureColor.Name = "pictureColor";
-            this.pictureColor.Size = new System.Drawing.Size(114, 72);
-            this.pictureColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureColor.TabIndex = 1;
-            this.pictureColor.TabStop = false;
-            this.toolTipColor.SetToolTip(this.pictureColor, "Choose color here");
-            this.pictureColor.Click += new System.EventHandler(this.pictureColor_Click);
             // 
             // lbColors
             // 
             this.lbColors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbColors.AutoSize = true;
             this.lbColors.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbColors.Location = new System.Drawing.Point(-2, 23);
+            this.lbColors.Location = new System.Drawing.Point(3, 13);
             this.lbColors.Name = "lbColors";
             this.lbColors.Size = new System.Drawing.Size(64, 36);
             this.lbColors.TabIndex = 0;
@@ -247,7 +224,7 @@
             // pnlShape
             // 
             this.pnlShape.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlShape.Controls.Add(this.button1);
+            this.pnlShape.Controls.Add(this.pictureBox1);
             this.pnlShape.Controls.Add(this.hexagol_icon);
             this.pnlShape.Controls.Add(this.rectangle_icon);
             this.pnlShape.Controls.Add(this.pentagol_icon);
@@ -258,8 +235,90 @@
             this.pnlShape.Controls.Add(this.lbShape);
             this.pnlShape.Location = new System.Drawing.Point(108, 3);
             this.pnlShape.Name = "pnlShape";
-            this.pnlShape.Size = new System.Drawing.Size(391, 79);
+            this.pnlShape.Size = new System.Drawing.Size(442, 79);
             this.pnlShape.TabIndex = 1;
+            // 
+            // lbShape
+            // 
+            this.lbShape.AutoSize = true;
+            this.lbShape.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbShape.Location = new System.Drawing.Point(156, 45);
+            this.lbShape.Name = "lbShape";
+            this.lbShape.Size = new System.Drawing.Size(67, 36);
+            this.lbShape.TabIndex = 0;
+            this.lbShape.Text = "Shapes";
+            // 
+            // pnlControl
+            // 
+            this.pnlControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlControl.Controls.Add(this.groupName);
+            this.pnlControl.Controls.Add(this.ptbGroupImage);
+            this.pnlControl.Location = new System.Drawing.Point(4, 0);
+            this.pnlControl.Name = "pnlControl";
+            this.pnlControl.Size = new System.Drawing.Size(143, 84);
+            this.pnlControl.TabIndex = 0;
+            // 
+            // groupName
+            // 
+            this.groupName.AutoSize = true;
+            this.groupName.BackColor = System.Drawing.Color.Red;
+            this.groupName.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.groupName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.groupName.Font = new System.Drawing.Font("VNI-Free", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupName.Location = new System.Drawing.Point(18, 54);
+            this.groupName.MaximumSize = new System.Drawing.Size(100, 100);
+            this.groupName.Name = "groupName";
+            this.groupName.Size = new System.Drawing.Size(54, 30);
+            this.groupName.TabIndex = 0;
+            this.groupName.Text = "NOPE";
+            // 
+            // directorySearcher1
+            // 
+            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            // 
+            // toolTipHexagon
+            // 
+            this.toolTipHexagon.ToolTipTitle = "Draw hexagon";
+            // 
+            // time_icon
+            // 
+            this.time_icon.BackColor = System.Drawing.Color.White;
+            this.time_icon.Image = ((System.Drawing.Image)(resources.GetObject("time_icon.Image")));
+            this.time_icon.Location = new System.Drawing.Point(0, 0);
+            this.time_icon.Name = "time_icon";
+            this.time_icon.Size = new System.Drawing.Size(69, 58);
+            this.time_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.time_icon.TabIndex = 2;
+            this.time_icon.TabStop = false;
+            // 
+            // pictureColor
+            // 
+            this.pictureColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureColor.Image = ((System.Drawing.Image)(resources.GetObject("pictureColor.Image")));
+            this.pictureColor.Location = new System.Drawing.Point(61, -1);
+            this.pictureColor.Name = "pictureColor";
+            this.pictureColor.Size = new System.Drawing.Size(114, 72);
+            this.pictureColor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureColor.TabIndex = 1;
+            this.pictureColor.TabStop = false;
+            this.toolTipColor.SetToolTip(this.pictureColor, "Choose color here");
+            this.pictureColor.Click += new System.EventHandler(this.pictureColor_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Lab01_DHMT.Properties.Resources.polygon;
+            this.pictureBox1.Location = new System.Drawing.Point(392, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(43, 46);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // hexagol_icon
             // 
@@ -346,43 +405,6 @@
             this.toolTipLine.SetToolTip(this.line_icon, "Draw Line");
             this.line_icon.Click += new System.EventHandler(this.line_Click);
             // 
-            // lbShape
-            // 
-            this.lbShape.AutoSize = true;
-            this.lbShape.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbShape.Location = new System.Drawing.Point(156, 45);
-            this.lbShape.Name = "lbShape";
-            this.lbShape.Size = new System.Drawing.Size(67, 36);
-            this.lbShape.TabIndex = 0;
-            this.lbShape.Text = "Shapes";
-            // 
-            // pnlControl
-            // 
-            this.pnlControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlControl.Controls.Add(this.groupName);
-            this.pnlControl.Controls.Add(this.ptbGroupImage);
-            this.pnlControl.Location = new System.Drawing.Point(4, 0);
-            this.pnlControl.Name = "pnlControl";
-            this.pnlControl.Size = new System.Drawing.Size(95, 84);
-            this.pnlControl.TabIndex = 0;
-            // 
-            // groupName
-            // 
-            this.groupName.AutoSize = true;
-            this.groupName.BackColor = System.Drawing.Color.Red;
-            this.groupName.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.groupName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.groupName.Font = new System.Drawing.Font("VNI-Free", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupName.Location = new System.Drawing.Point(18, 54);
-            this.groupName.MaximumSize = new System.Drawing.Size(100, 100);
-            this.groupName.Name = "groupName";
-            this.groupName.Size = new System.Drawing.Size(54, 30);
-            this.groupName.TabIndex = 0;
-            this.groupName.Text = "NOPE";
-            // 
             // ptbGroupImage
             // 
             this.ptbGroupImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -395,32 +417,12 @@
             this.ptbGroupImage.TabStop = false;
             this.toolTipImageGroup.SetToolTip(this.ptbGroupImage, "We are NOPE: Vinh, Hoài, Huấn, Huy, Thắng");
             // 
-            // directorySearcher1
-            // 
-            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
-            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
-            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
-            // 
-            // toolTipHexagon
-            // 
-            this.toolTipHexagon.ToolTipTitle = "Draw hexagon";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(281, 51);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(999, 450);
+            this.ClientSize = new System.Drawing.Size(1047, 450);
             this.Controls.Add(this.pnlMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -432,12 +434,15 @@
             this.pnlSize.PerformLayout();
             this.pnlTime.ResumeLayout(false);
             this.pnlTime.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.time_icon)).EndInit();
             this.pnlColors.ResumeLayout(false);
             this.pnlColors.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureColor)).EndInit();
             this.pnlShape.ResumeLayout(false);
             this.pnlShape.PerformLayout();
+            this.pnlControl.ResumeLayout(false);
+            this.pnlControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.time_icon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hexagol_icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rectangle_icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pentagol_icon)).EndInit();
@@ -445,8 +450,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.circle_icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ellipse_icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.line_icon)).EndInit();
-            this.pnlControl.ResumeLayout(false);
-            this.pnlControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbGroupImage)).EndInit();
             this.ResumeLayout(false);
 
@@ -491,6 +494,6 @@
         private System.Windows.Forms.ToolTip toolTipSize;
         private System.Windows.Forms.ToolTip toolTipColor;
         private System.Windows.Forms.ToolTip toolTipImageGroup;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

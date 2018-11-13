@@ -10,9 +10,6 @@ using Rectangle = Lab01_DHMT.Shapes.Rectangle;
 
 namespace Lab01_DHMT.Draw
 {
-    /*
-     This class 
-     */
     public class Draw
     {
         /*stack Shape contains a list shapes we draw on winform*/

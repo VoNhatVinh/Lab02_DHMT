@@ -15,6 +15,7 @@ namespace Lab01_DHMT.Shapes
         public Point secondPoint;
         public float _size;
         public Color _color;
+        public Point _center;
         public List<Point> list_control_points=null;
 
         public virtual void Draw(OpenGLControl glControl)
@@ -47,6 +48,7 @@ namespace Lab01_DHMT.Shapes
             }
 
             var glCtrl = gLControl.OpenGL;
+
             //size control point
             glCtrl.PointSize(5f);
 
