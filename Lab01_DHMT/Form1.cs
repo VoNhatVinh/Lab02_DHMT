@@ -18,7 +18,7 @@ namespace Lab01_DHMT
         static Color color = Color.Black;
         static float size = 1.0f;                           /*thickness of shape*/
         static int chooseIcon;                              /*choose Shape icon*/
-        static polygon plg=new polygon();                      /*poligon*/
+        static polygon plg = new polygon();                      /*poligon*/
         static List<polygon> list_plg=new List<polygon>();  /*list poligon*/
         static bool mouseDown = false;
         static bool mouseLeft = false;
@@ -129,6 +129,7 @@ namespace Lab01_DHMT
 
             if (mode == 2)//draw polygon
             {
+                //end of drawing polygon
                 if (e.Button == MouseButtons.Right)
                 {                   
                     list_plg.Add(plg);
@@ -137,9 +138,9 @@ namespace Lab01_DHMT
                     mouseLeft = false;
                     clock += DateTime.Now.Subtract(startTime);
                 }else
-                if (e.Button == MouseButtons.Left)
+                if (e.Button == MouseButtons.Left)//continue drawing
                 {
-                    plg.addPoint(e.Location);
+                    plg.addPoint(e.Location);//call function addPoint(Point point) to add new point to list
                     mouseLeft = true;
                     clock += DateTime.Now.Subtract(startTime);
                 }

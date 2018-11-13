@@ -10,7 +10,7 @@ namespace Lab01_DHMT.Shapes
 {
     public class polygon:Shape
     {
-        public List<Point> plg=null;
+        public List<Point> plg=null;//list that save the points to draw polygon
         
         public polygon()
         {
@@ -20,17 +20,18 @@ namespace Lab01_DHMT.Shapes
             }
         }
 
-        public void addPoint(Point point)
+        public void addPoint(Point point)//add new point
         {
             plg.Add(point);
         }
 
         public void drawPolygon(OpenGLControl glControl, Color _clr, float size)
+        
         {
-            glControl.OpenGL.Begin(OpenGL.GL_LINE_LOOP);
             glControl.OpenGL.LineWidth(size);
-            glControl.OpenGL.Color(_clr.R / 255.0, _clr.G / 255.0, _clr.B / 255.0);
 
+            glControl.OpenGL.Begin(OpenGL.GL_LINE_LOOP);
+            glControl.OpenGL.Color(_clr.R / 255.0, _clr.G / 255.0, _clr.B / 255.0);
            plg.ForEach(plgon => glControl.OpenGL.Vertex(plgon.X, glControl.Height- plgon.Y));    
             glControl.OpenGL.End();
             glControl.OpenGL.Flush();

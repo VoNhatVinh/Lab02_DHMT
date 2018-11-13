@@ -10,10 +10,6 @@ namespace Lab01_DHMT.Shapes
 {
     class Circle : Shape
     {
-        public Point center, start;
-        public int R;
-        public float p;
-
         public Circle(Point start_1, Point end, float size, Color color)
         {
             firstPoint = start_1;
@@ -26,7 +22,7 @@ namespace Lab01_DHMT.Shapes
             if (size_X < size_Y)
             {
                 secondPoint.X = end.X;
-                if (start.Y > end.Y)
+                if (start_1.Y > end.Y)
                 {
                     secondPoint.Y = firstPoint.Y - (int)size_X;
                 }
@@ -55,15 +51,14 @@ namespace Lab01_DHMT.Shapes
             //_width = R;
             _size = size;
             _color = color;
-            center = new Point((firstPoint.X + secondPoint.X) / 2, (firstPoint.Y + secondPoint.Y) / 2);
-            R = (int)Math.Sqrt(Math.Pow(secondPoint.X - center.X, 2) + Math.Pow(secondPoint.Y - center.Y, 2));
-            start = new Point(0, R);
-
         }
 
         public override void Draw(OpenGLControl glControl)
         {
-            start = new Point(0, R);
+            Point center = new Point((firstPoint.X + secondPoint.X) / 2, (firstPoint.Y + secondPoint.Y) / 2);
+            int R = (int)(Math.Abs(firstPoint.X - secondPoint.X) / 2);
+            Point start = new Point(0, R);
+
             float x = 0;
             float y = 2 * R;
             float p = 1 - y;
