@@ -28,11 +28,20 @@ namespace Lab01_DHMT.Shapes
         public void drawPolygon(OpenGLControl glControl, Color _clr, float size)
         
         {
+<<<<<<< HEAD
+=======
+            base.Draw(glControl);
+            glControl.OpenGL.Begin(OpenGL.GL_LINE_LOOP);
+>>>>>>> b12305d3415f35e1fa4c59e50f05e799316d71dc
             glControl.OpenGL.LineWidth(size);
 
+<<<<<<< HEAD
             glControl.OpenGL.Begin(OpenGL.GL_LINE_LOOP);
             glControl.OpenGL.Color(_clr.R / 255.0, _clr.G / 255.0, _clr.B / 255.0);
            plg.ForEach(plgon => glControl.OpenGL.Vertex(plgon.X, glControl.Height- plgon.Y));    
+=======
+            plg.ForEach(plgon => glControl.OpenGL.Vertex(plgon.X, glControl.Height- plgon.Y));    
+>>>>>>> b12305d3415f35e1fa4c59e50f05e799316d71dc
             glControl.OpenGL.End();
             glControl.OpenGL.Flush();
         }

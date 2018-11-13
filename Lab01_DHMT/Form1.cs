@@ -63,7 +63,7 @@ namespace Lab01_DHMT
             gl.Viewport(0, 0, openGLControl.Width, openGLControl.Height);
             gl.Ortho2D(0, openGLControl.Width, 0, openGLControl.Height);
         }
-
+         
         /*Draw shape*/
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs args)
         {
@@ -126,7 +126,6 @@ namespace Lab01_DHMT
                 clock = DateTime.Now.Subtract(startTime);
             }
 
-
             if (mode == 2)//draw polygon
             {
                 //end of drawing polygon
@@ -140,13 +139,18 @@ namespace Lab01_DHMT
                 }else
                 if (e.Button == MouseButtons.Left)//continue drawing
                 {
+<<<<<<< HEAD
                     plg.addPoint(e.Location);//call function addPoint(Point point) to add new point to list
+=======
+                    //startTime = DateTime.Now;
+                    plg.addPoint(e.Location);
+>>>>>>> b12305d3415f35e1fa4c59e50f05e799316d71dc
                     mouseLeft = true;
                     clock += DateTime.Now.Subtract(startTime);
                 }
             }
 
-            if (chooseIcon < 1)
+            if (chooseIcon < 1 && mode!=2)
                 clock = TimeSpan.Zero;
         }
       
