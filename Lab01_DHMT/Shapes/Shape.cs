@@ -61,6 +61,7 @@ namespace Lab01_DHMT.Shapes
             glCtrl.Begin(OpenGL.GL_POINTS);
             list_control_points.ForEach(lst => glCtrl.Vertex(lst.X, lst.Y));
             glCtrl.End();
+
             glCtrl.Flush();
         }
     }
