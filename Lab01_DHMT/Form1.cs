@@ -85,9 +85,9 @@ namespace Lab01_DHMT
             else if (mode == 2)
             {
                 if (mouseLeft == true)
-                    plg.drawPolygon(openGLControl, color, size);
+                    plg.drawPolygon_1(openGLControl, color, size);
             }
-            list_plg.ForEach(plgon => plgon.drawPolygon(openGLControl, color, size));
+            list_plg.ForEach(plgon => plgon.drawPolygon(openGLControl));
 
             //draw shape           
             Draw.Draw.DrawShape(openGLControl);
@@ -130,7 +130,8 @@ namespace Lab01_DHMT
             {
                 //end of drawing polygon
                 if (e.Button == MouseButtons.Right)
-                {                   
+                {
+                    //add to list
                     list_plg.Add(plg);
                     plg = new polygon();
 

@@ -34,6 +34,7 @@ namespace Lab01_DHMT.Shapes
                 if (start.Y < end.Y)
                 {
                     k = delta_X * Math.Tan(m);
+
                 }
                 else
                 {
@@ -62,6 +63,7 @@ namespace Lab01_DHMT.Shapes
             _size = size;
             _color = color;
         }
+
 
         public override void Draw(OpenGLControl glControl)
         {
