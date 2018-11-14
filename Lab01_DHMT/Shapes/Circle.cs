@@ -51,11 +51,12 @@ namespace Lab01_DHMT.Shapes
             //_width = R;
             _size = size;
             _color = color;
+            //center
+            _center = new Point((firstPoint.X + secondPoint.X) / 2, (firstPoint.Y + secondPoint.Y) / 2);
         }
 
         public override void Draw(OpenGLControl glControl)
         {
-            Point center = new Point((firstPoint.X + secondPoint.X) / 2, (firstPoint.Y + secondPoint.Y) / 2);
             int R = (int)(Math.Abs(firstPoint.X - secondPoint.X) / 2);
             Point start = new Point(0, R);
 
@@ -77,14 +78,14 @@ namespace Lab01_DHMT.Shapes
                 }
 
                 glCtrl.Begin(OpenGL.GL_POINTS);
-                glCtrl.Vertex(center.X - start.X, glControl.Height - (center.Y - start.Y));
-                glCtrl.Vertex(center.X + start.X, glControl.Height - (center.Y + start.Y));
-                glCtrl.Vertex(center.X - start.X, glControl.Height - (center.Y + start.Y));
-                glCtrl.Vertex(center.X + start.X, glControl.Height - (center.Y - start.Y));
-                glCtrl.Vertex(center.X - start.Y, glControl.Height - (center.Y - start.X));
-                glCtrl.Vertex(center.X + start.Y, glControl.Height - (center.Y + start.X));
-                glCtrl.Vertex(center.X - start.Y, glControl.Height - (center.Y + start.X));
-                glCtrl.Vertex(center.X + start.Y, glControl.Height - (center.Y - start.X));
+                glCtrl.Vertex(_center.X - start.X, glControl.Height - (_center.Y - start.Y));
+                glCtrl.Vertex(_center.X + start.X, glControl.Height - (_center.Y + start.Y));
+                glCtrl.Vertex(_center.X - start.X, glControl.Height - (_center.Y + start.Y));
+                glCtrl.Vertex(_center.X + start.X, glControl.Height - (_center.Y - start.Y));
+                glCtrl.Vertex(_center.X - start.Y, glControl.Height - (_center.Y - start.X));
+                glCtrl.Vertex(_center.X + start.Y, glControl.Height - (_center.Y + start.X));
+                glCtrl.Vertex(_center.X - start.Y, glControl.Height - (_center.Y + start.X));
+                glCtrl.Vertex(_center.X + start.Y, glControl.Height - (_center.Y - start.X));
                 glCtrl.End();
                 start.X++;
                 x += 2;
