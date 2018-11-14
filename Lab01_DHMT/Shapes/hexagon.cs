@@ -62,6 +62,9 @@ namespace Lab01_DHMT.Shapes
 
             _size = size;
             _color = color;
+            _center.X = (int)((firstPoint.X + secondPoint.X) / 2);
+            _center.Y = (int)((firstPoint.Y + secondPoint.Y) / 2);
+            R = (int)(Math.Abs((firstPoint.Y - secondPoint.Y) / 2));
         }
 
 
@@ -69,17 +72,16 @@ namespace Lab01_DHMT.Shapes
         {
 
             double delta_Y = (double)(firstPoint.Y - secondPoint.Y) / 4;
-            double x_Center = (double)(firstPoint.X + secondPoint.X) / 2;
 
             base.Draw(glControl);
             var glCtrl = glControl.OpenGL;
             glCtrl.Begin(OpenGL.GL_LINE_LOOP);
            
             //determine the points of hexagon
-            glCtrl.Vertex(x_Center, glControl.Height - firstPoint.Y);
+            glCtrl.Vertex(_center.X, glControl.Height - firstPoint.Y);
             glCtrl.Vertex(secondPoint.X, glControl.Height - (firstPoint.Y - delta_Y));
             glCtrl.Vertex(secondPoint.X, glControl.Height - (secondPoint.Y + delta_Y));
-            glCtrl.Vertex(x_Center, glControl.Height - secondPoint.Y);
+            glCtrl.Vertex(_center.X, glControl.Height - secondPoint.Y);
             glCtrl.Vertex(firstPoint.X, glControl.Height - (secondPoint.Y + delta_Y));
             glCtrl.Vertex(firstPoint.X, glControl.Height - (firstPoint.Y - delta_Y));   
 

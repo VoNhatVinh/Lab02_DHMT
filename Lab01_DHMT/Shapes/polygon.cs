@@ -51,5 +51,35 @@ namespace Lab01_DHMT.Shapes
             glControl.OpenGL.End();
             glControl.OpenGL.Flush();
         }
+        public void SetData_ControlPoint(OpenGLControl gLControl)//set firstPoint and secondPoint
+        {
+            int sum_pos_x = 0;
+            int sum_pos_y = 0;
+            int count = plg.Count;
+
+            int topleft_x = plg[0].X;
+            int topleft_y = plg[0].Y;
+            int botright_x = plg[plg.Count - 1].X;
+            int botright_y = plg[plg.Count - 1].Y;
+
+            foreach (var x in plg)
+            {
+                if (x.X <= topleft_x)
+                    topleft_x = x.X;
+                if (x.X >= botright_x)
+                    botright_x = x.X;
+                if (x.Y <= topleft_y)
+                    topleft_y = x.Y;
+                if (x.Y >= botright_y)
+                    botright_y = x.Y;
+
+                sum_pos_x += x.X;
+                sum_pos_y += x.Y;
+            }
+            firstPoint = new Point(topleft_x, topleft_y);
+            secondPoint = new Point(botright_x, botright_y);
+
+            _center = new Point((int)(sum_pos_x / count), (int)(sum_pos_y / count));
+        }
     }
 }

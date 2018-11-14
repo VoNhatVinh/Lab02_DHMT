@@ -48,16 +48,15 @@ namespace Lab01_DHMT.Shapes
             if (firstPoint == secondPoint)
                 return;
 
-            //_width = R;
             _size = size;
             _color = color;
-            //center
-            _center = new Point((firstPoint.X + secondPoint.X) / 2, (firstPoint.Y + secondPoint.Y) / 2);
+            //center,width R
+            _center = new Point((int)((firstPoint.X + secondPoint.X) / 2), (int)((firstPoint.Y + secondPoint.Y) / 2));
+            R = (int)(Math.Abs(firstPoint.X - secondPoint.X) / 2);
         }
 
         public override void Draw(OpenGLControl glControl)
         {
-            int R = (int)(Math.Abs(firstPoint.X - secondPoint.X) / 2);
             Point start = new Point(0, R);
 
             float x = 0;

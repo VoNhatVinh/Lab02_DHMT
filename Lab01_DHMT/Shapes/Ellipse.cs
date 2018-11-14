@@ -16,13 +16,13 @@ namespace Lab01_DHMT.Shapes
             secondPoint = end;
             _size = size;
             _color = color;
+            //center of the shape
+            _center.X = (firstPoint.X + secondPoint.X) / 2;
+            _center.Y = (firstPoint.Y + secondPoint.Y) / 2;
         }
 
         public override void Draw(OpenGLControl glControl)
         {
-            //the Center of the shape
-            double Center_X = (firstPoint.X + secondPoint.X) / 2;
-            double Center_y = (firstPoint.Y + secondPoint.Y) / 2;
 
             //radiusX and radiusY
             double ra_X = Math.Abs((firstPoint.X - secondPoint.X) / 2);
@@ -38,8 +38,8 @@ namespace Lab01_DHMT.Shapes
             for (int i = 0; i < 10000; i++)
             {
                 //the coordinates of the point
-                double x_pos = Center_X + Math.Cos(i * Pi / 10000) * ra_X;
-                double y_pos = Center_y - Math.Sin(i * Pi / 10000) * ra_Y;
+                double x_pos = _center.X + Math.Cos(i * Pi / 10000) * ra_X;
+                double y_pos = _center.Y - Math.Sin(i * Pi / 10000) * ra_Y;
                 //use Neighborhood-4
                 glCtrl.Vertex(x_pos, glControl.Height - y_pos);
                 glCtrl.Vertex(x_pos - 1, glControl.Height - y_pos);

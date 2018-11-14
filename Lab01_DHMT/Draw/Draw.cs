@@ -85,5 +85,103 @@ namespace Lab01_DHMT.Draw
 
             glCtrl.Flush();
         }
+
+        /*
+        draw control points
+        */
+        public static void DrawControlPoints(OpenGLControl openGLControl, List<polygon> list_plg, Point end)
+        {
+            int eps = 3;//epsilon
+            bool inside = false;
+            var glCtrl = openGLControl.OpenGL;
+
+            foreach (var pos in stackShape)//xét các shape
+            {
+                inside = false;
+
+                int fi_x = pos.firstPoint.X;
+                int fi_y = pos.firstPoint.Y;
+                int se_x = pos.secondPoint.X;
+                int se_y = pos.secondPoint.Y;
+
+                if(fi_x < se_x && fi_y < se_y)//firstPoint: topleft, secondPoint: botright
+                {
+                    if ((fi_x - eps <= end.X && end.X <= se_x + eps) && (fi_y - eps <= end.Y && end.Y < se_y + eps))
+                        inside = true;
+                    break;
+                }
+                
+                if(fi_x < se_x && fi_y > se_y)//firstPoint: botleft, secondPoint: topright
+                {
+                    if ((fi_x - eps <= end.X && end.X <= se_x + eps) && (fi_y + eps <= end.Y && end.Y < se_y - eps))
+                        inside = true;
+                }
+
+                if (fi_x > se_x && fi_y < se_y)//firstPoint: topright, secondPoint: botleft
+                {
+                    if ((se_x - eps <= end.X && end.X <= fi_x + eps) && (fi_y - eps <= end.Y && end.Y < se_y + eps))
+                        inside = true;
+                }
+
+                if (fi_x > se_x && fi_y > se_y)//firstPoint: botright, secondPoint: topleft
+                {
+                    if ((se_x - eps <= end.X && end.X <= fi_x + eps) && (fi_y + eps <= end.Y && end.Y < se_y - eps))
+                        inside = true;
+                }
+
+                if(inside == true)
+                {
+                    pos.drawControlPoints(openGLControl);
+                    glCtrl.Flush();
+                    break;
+                }
+            }
+            if(inside == false)
+            {
+                foreach(var pol in list_plg)
+                {
+                    inside = false;
+
+                    pol.SetData_ControlPoint(openGLControl);
+
+                    int fi_x = pol.firstPoint.X;
+                    int fi_y = pol.firstPoint.Y;
+                    int se_x = pol.secondPoint.X;
+                    int se_y = pol.secondPoint.Y;
+
+                    if (fi_x < se_x && fi_y < se_y)//firstPoint: topleft, secondPoint: botright
+                    {
+                        if ((fi_x - eps <= end.X && end.X <= se_x + eps) && (fi_y - eps <= end.Y && end.Y < se_y + eps))
+                            inside = true;
+                        break;
+                    }
+
+                    if (fi_x < se_x && fi_y > se_y)//firstPoint: botleft, secondPoint: topright
+                    {
+                        if ((fi_x - eps <= end.X && end.X <= se_x + eps) && (fi_y + eps <= end.Y && end.Y < se_y - eps))
+                            inside = true;
+                    }
+
+                    if (fi_x > se_x && fi_y < se_y)//firstPoint: topright, secondPoint: botleft
+                    {
+                        if ((se_x - eps <= end.X && end.X <= fi_x + eps) && (fi_y - eps <= end.Y && end.Y < se_y + eps))
+                            inside = true;
+                    }
+
+                    if (fi_x > se_x && fi_y > se_y)//firstPoint: botright, secondPoint: topleft
+                    {
+                        if ((se_x - eps <= end.X && end.X <= fi_x + eps) && (fi_y + eps <= end.Y && end.Y < se_y - eps))
+                            inside = true;
+                    }
+                    if (inside == true)
+                    {
+                        pol.drawControlPoints(openGLControl);
+                        glCtrl.Flush();
+                        break;
+                    }
+                }
+            }
+            glCtrl.Flush();
+        }
     }
 }

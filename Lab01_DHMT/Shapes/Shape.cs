@@ -16,6 +16,7 @@ namespace Lab01_DHMT.Shapes
         public float _size;
         public Color _color;
         public Point _center;
+        public int R; // radius
         public List<Point> list_control_points=null;
 
         public virtual void Draw(OpenGLControl glControl)
