@@ -31,16 +31,15 @@ namespace Lab01_DHMT.Shapes
                 double m = Math.PI / 2 - theta;
                 double k;
 
-                if (start.X < end.X)
+                if (start.Y < end.Y)
                 {
                     k = delta_X * Math.Tan(m);
-                    secondPoint.Y = firstPoint.Y + (int)k;
                 }
                 else
                 {
                     k = 0 - delta_X * Math.Tan(m);
-                    secondPoint.Y = firstPoint.Y - (int)k;
                 }
+                secondPoint.Y = firstPoint.Y + (int)k;
             }
 
             if (delta_X > (delta_Y * Math.Tan(theta)))

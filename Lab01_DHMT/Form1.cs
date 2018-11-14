@@ -139,12 +139,9 @@ namespace Lab01_DHMT
                 }else
                 if (e.Button == MouseButtons.Left)//continue drawing
                 {
-<<<<<<< HEAD
                     plg.addPoint(e.Location);//call function addPoint(Point point) to add new point to list
-=======
                     //startTime = DateTime.Now;
-                    plg.addPoint(e.Location);
->>>>>>> b12305d3415f35e1fa4c59e50f05e799316d71dc
+                    //plg.addPoint(e.Location);
                     mouseLeft = true;
                     clock += DateTime.Now.Subtract(startTime);
                 }

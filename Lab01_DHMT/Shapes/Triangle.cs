@@ -26,17 +26,9 @@ namespace Lab01_DHMT.Shapes
             if (delta_Y < (delta_X * Math.Sin(Math.PI / 3)))
             {
                 secondPoint.Y = end.Y;
-                double k;
-                if (start.X < end.X)
-                {
-                    k = end.Y - start.Y;
-                }
-                else
-                {
-                    k = start.Y - end.Y;
-                }
+                double k = Math.Abs(start.Y - end.Y);
                 double theta = Math.Atan(2 / Math.Sqrt(3));
-                if (start.Y > end.Y)
+                if (start.X > end.X)
                     secondPoint.X = start.X - (int)(k * Math.Tan(theta));
                 else
                     secondPoint.X = start.X + (int)(k * Math.Tan(theta));
@@ -45,18 +37,12 @@ namespace Lab01_DHMT.Shapes
             if (delta_Y > (delta_X * Math.Sin(Math.PI / 3)))
             {
                 secondPoint.X = end.X;
-                double k;
-                if (start.X < end.X)
-                {
-                    k = start.X - end.X;
-                }
-                else
-                {
-                    k = end.X - start.X;
-                }
-
+                double k = Math.Abs(start.X - end.X);
                 double theta = Math.Atan(Math.Sqrt(3) / 2);
-                secondPoint.Y = start.Y - (int)(k * Math.Tan(theta));
+                if (start.Y > end.Y)
+                    secondPoint.Y = start.Y - (int)(k * Math.Tan(theta));
+                else
+                    secondPoint.Y = start.Y + (int)(k * Math.Tan(theta));
             }
 
             _size = size;
