@@ -76,6 +76,7 @@ namespace Lab01_DHMT
             {
                 size = 1.0f;
             }
+
             if (mode == 1)//draw shape
             {
                 var Item = Draw.Draw.chooseShape(openGLControl, chooseIcon, start, end, size, color);
@@ -87,6 +88,14 @@ namespace Lab01_DHMT
                 if (mouseLeft == true)
                     plg.drawPolygon_1(openGLControl, color, size);
             }
+            
+            //select shape
+            else if (mode == 3)
+            {
+                //gọi hàm tính khoảng cách nhỏ nhất minDistance(Stack <Shape> shp, List <polygon> plg, e.location);
+                //gọi hàm vẽ nếu thỏa minDistance<epsilon (cần khai báo epsilon = const phía trên)
+            }
+
             list_plg.ForEach(plgon => plgon.drawPolygon(openGLControl));
 
             //draw shape           
@@ -163,7 +172,7 @@ namespace Lab01_DHMT
         }
 
 
-        /*choose shape by Click event*/    
+        /*choose shape by click event*/    
         private void line_Click(object sender, EventArgs e)
         {
             mode = 1;
@@ -216,6 +225,12 @@ namespace Lab01_DHMT
             mode = 1;
             start.X = -1;
             start.Y = -1;
-        }       
+        }
+
+        /*select shape by click event*/
+        private void selectShapeLb_Click(object sender, EventArgs e)
+        {
+            mode = 3;
+        }
     }
 }

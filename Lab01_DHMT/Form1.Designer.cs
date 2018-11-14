@@ -68,6 +68,10 @@
             this.toolTipSize = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipColor = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipImageGroup = new System.Windows.Forms.ToolTip(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.selectShape_icon = new System.Windows.Forms.PictureBox();
+            this.selectShapeLb = new System.Windows.Forms.Label();
+            this.selectShapett = new System.Windows.Forms.ToolTip(this.components);
             this.pnlMain.SuspendLayout();
             this.pnlDraw.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
@@ -87,6 +91,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.line_icon)).BeginInit();
             this.pnlControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbGroupImage)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.selectShape_icon)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -96,6 +102,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMain.BackColor = System.Drawing.Color.Transparent;
             this.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlMain.Controls.Add(this.panel1);
             this.pnlMain.Controls.Add(this.pnlDraw);
             this.pnlMain.Controls.Add(this.pnlSize);
             this.pnlMain.Controls.Add(this.pnlTime);
@@ -104,7 +111,7 @@
             this.pnlMain.Controls.Add(this.pnlControl);
             this.pnlMain.Location = new System.Drawing.Point(12, 12);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1023, 426);
+            this.pnlMain.Size = new System.Drawing.Size(1114, 426);
             this.pnlMain.TabIndex = 0;
             // 
             // pnlDraw
@@ -115,7 +122,7 @@
             this.pnlDraw.Controls.Add(this.openGLControl);
             this.pnlDraw.Location = new System.Drawing.Point(4, 94);
             this.pnlDraw.Name = "pnlDraw";
-            this.pnlDraw.Size = new System.Drawing.Size(1012, 325);
+            this.pnlDraw.Size = new System.Drawing.Size(1103, 325);
             this.pnlDraw.TabIndex = 5;
             // 
             // openGLControl
@@ -131,7 +138,7 @@
             this.openGLControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControl.RenderContextType = SharpGL.RenderContextType.DIBSection;
             this.openGLControl.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
-            this.openGLControl.Size = new System.Drawing.Size(1012, 312);
+            this.openGLControl.Size = new System.Drawing.Size(1103, 312);
             this.openGLControl.TabIndex = 0;
             this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
             this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
@@ -145,9 +152,9 @@
             this.pnlSize.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlSize.Controls.Add(this.tbSize);
             this.pnlSize.Controls.Add(this.lbSize);
-            this.pnlSize.Location = new System.Drawing.Point(556, 3);
+            this.pnlSize.Location = new System.Drawing.Point(665, 2);
             this.pnlSize.Name = "pnlSize";
-            this.pnlSize.Size = new System.Drawing.Size(79, 79);
+            this.pnlSize.Size = new System.Drawing.Size(57, 79);
             this.pnlSize.TabIndex = 2;
             // 
             // tbSize
@@ -156,7 +163,7 @@
             this.tbSize.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSize.Location = new System.Drawing.Point(3, 3);
             this.tbSize.Name = "tbSize";
-            this.tbSize.Size = new System.Drawing.Size(71, 43);
+            this.tbSize.Size = new System.Drawing.Size(45, 43);
             this.tbSize.TabIndex = 1;
             this.tbSize.Text = "1";
             this.toolTipSize.SetToolTip(this.tbSize, "Fill size shape here");
@@ -166,7 +173,7 @@
             this.lbSize.AutoSize = true;
             this.lbSize.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSize.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbSize.Location = new System.Drawing.Point(17, 43);
+            this.lbSize.Location = new System.Drawing.Point(3, 41);
             this.lbSize.Name = "lbSize";
             this.lbSize.Size = new System.Drawing.Size(45, 36);
             this.lbSize.TabIndex = 0;
@@ -178,7 +185,7 @@
             this.pnlTime.Controls.Add(this.tbTime);
             this.pnlTime.Controls.Add(this.time_icon);
             this.pnlTime.Controls.Add(this.lbTime);
-            this.pnlTime.Location = new System.Drawing.Point(826, 4);
+            this.pnlTime.Location = new System.Drawing.Point(913, 3);
             this.pnlTime.Name = "pnlTime";
             this.pnlTime.Size = new System.Drawing.Size(190, 80);
             this.pnlTime.TabIndex = 4;
@@ -216,7 +223,7 @@
             this.pnlColors.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlColors.Controls.Add(this.pictureColor);
             this.pnlColors.Controls.Add(this.lbColors);
-            this.pnlColors.Location = new System.Drawing.Point(641, 3);
+            this.pnlColors.Location = new System.Drawing.Point(728, 2);
             this.pnlColors.Name = "pnlColors";
             this.pnlColors.Size = new System.Drawing.Size(179, 81);
             this.pnlColors.TabIndex = 3;
@@ -362,7 +369,7 @@
             // 
             this.lbShape.AutoSize = true;
             this.lbShape.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbShape.Location = new System.Drawing.Point(156, 45);
+            this.lbShape.Location = new System.Drawing.Point(172, 45);
             this.lbShape.Name = "lbShape";
             this.lbShape.Size = new System.Drawing.Size(67, 36);
             this.lbShape.TabIndex = 0;
@@ -378,7 +385,7 @@
             this.pnlControl.Controls.Add(this.ptbGroupImage);
             this.pnlControl.Location = new System.Drawing.Point(4, 0);
             this.pnlControl.Name = "pnlControl";
-            this.pnlControl.Size = new System.Drawing.Size(143, 84);
+            this.pnlControl.Size = new System.Drawing.Size(234, 84);
             this.pnlControl.TabIndex = 0;
             // 
             // groupName
@@ -417,12 +424,44 @@
             // 
             this.toolTipHexagon.ToolTipTitle = "Draw hexagon";
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.selectShape_icon);
+            this.panel1.Controls.Add(this.selectShapeLb);
+            this.panel1.Location = new System.Drawing.Point(552, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(107, 79);
+            this.panel1.TabIndex = 6;
+            // 
+            // selectShape_icon
+            // 
+            this.selectShape_icon.Image = ((System.Drawing.Image)(resources.GetObject("selectShape_icon.Image")));
+            this.selectShape_icon.Location = new System.Drawing.Point(0, 1);
+            this.selectShape_icon.Name = "selectShape_icon";
+            this.selectShape_icon.Size = new System.Drawing.Size(104, 47);
+            this.selectShape_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.selectShape_icon.TabIndex = 0;
+            this.selectShape_icon.TabStop = false;
+            this.selectShapett.SetToolTip(this.selectShape_icon, "Select Shape");
+            // 
+            // selectShapeLb
+            // 
+            this.selectShapeLb.AutoSize = true;
+            this.selectShapeLb.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectShapeLb.Location = new System.Drawing.Point(19, 43);
+            this.selectShapeLb.Name = "selectShapeLb";
+            this.selectShapeLb.Size = new System.Drawing.Size(63, 36);
+            this.selectShapeLb.TabIndex = 1;
+            this.selectShapeLb.Text = "Select";
+            this.selectShapeLb.Click += new System.EventHandler(this.selectShapeLb_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1047, 450);
+            this.ClientSize = new System.Drawing.Size(1138, 450);
             this.Controls.Add(this.pnlMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -451,6 +490,9 @@
             this.pnlControl.ResumeLayout(false);
             this.pnlControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbGroupImage)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.selectShape_icon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -495,5 +537,9 @@
         private System.Windows.Forms.ToolTip toolTipColor;
         private System.Windows.Forms.ToolTip toolTipImageGroup;
         private System.Windows.Forms.PictureBox polygon_icon;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox selectShape_icon;
+        private System.Windows.Forms.ToolTip selectShapett;
+        private System.Windows.Forms.Label selectShapeLb;
     }
 }
