@@ -40,5 +40,42 @@ namespace Lab01_DHMT.Shapes
 
             glCtrl.Flush();
         }
+
+        /*
+         * Draw Control Points
+         */
+
+        public override void drawControlPoints(OpenGLControl gLControl)
+        {
+            /*Create a list control point contains 8 control points: 
+             * 4 points in 4 angles and 4 points in mid of lines cover shape             
+            */
+
+            list_control_points = new List<Point>();
+            
+            list_control_points.Add(new Point(firstPoint.X, gLControl.Height - firstPoint.Y));
+            list_control_points.Add(new Point(secondPoint.X, gLControl.Height - secondPoint.Y));
+           
+            var glCtrl = gLControl.OpenGL;
+
+            //size control point
+            glCtrl.PointSize(5f);
+
+            //color
+            Color clr = Color.Red;
+            glCtrl.Color(clr.R / 255.0, clr.G / 255.0, clr.B / 255.0);
+
+            //draw
+            glCtrl.Begin(OpenGL.GL_POINTS);
+
+            foreach (var lst in list_control_points)
+            {
+                glCtrl.Vertex((double)lst.X, lst.Y);
+            }
+            list_control_points.ForEach(lst => glCtrl.Vertex(lst.X, lst.Y));
+            glCtrl.End();
+
+            //glCtrl.Flush();
+        }
     }
 }

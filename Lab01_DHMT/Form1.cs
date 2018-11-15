@@ -92,7 +92,10 @@ namespace Lab01_DHMT
             //select shape
             else if (mode == 3)
             {
-                Draw.Draw.DrawControlPoints(openGLControl,Draw.Draw.stackShape, list_plg, end);
+                if (end.X != -1 && end.Y != -1)
+                {
+                    Draw.Draw.DrawControlPoints(openGLControl, Draw.Draw.stackShape, list_plg, end);
+                }
             }
 
             list_plg.ForEach(plgon => plgon.drawPolygon(openGLControl));
@@ -160,6 +163,7 @@ namespace Lab01_DHMT
             {
                 mouseDown = false;
                 end = e.Location;
+                //Draw.Draw.DrawControlPoints(openGLControl, Draw.Draw.stackShape, list_plg, end);
             }
             if (chooseIcon < 1 && mode!=2)
                 clock = TimeSpan.Zero;
@@ -235,6 +239,8 @@ namespace Lab01_DHMT
         private void selectShapeLb_Click(object sender, EventArgs e)
         {
             mode = 3;
+            start.X = -1;
+            start.Y = -1;
         }
     }
 }

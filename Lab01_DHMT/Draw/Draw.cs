@@ -91,7 +91,7 @@ namespace Lab01_DHMT.Draw
         */
         public static void DrawControlPoints(OpenGLControl openGLControl,Stack<Shape> stackShape, List<polygon> list_plg, Point end)
         {
-            int eps = 3;//epsilon
+            int eps = 10;//epsilon
             bool inside = false;
             var glCtrl = openGLControl.OpenGL;
 
@@ -173,10 +173,12 @@ namespace Lab01_DHMT.Draw
                         if ((se_x - eps <= end.X && end.X <= fi_x + eps) && (fi_y + eps <= end.Y && end.Y < se_y - eps))
                             inside = true;
                     }
+
                     if (inside == true)
                     {
                         pol.drawControlPoints(openGLControl);
                         glCtrl.Flush();
+                        
                         break;
                     }
                 }

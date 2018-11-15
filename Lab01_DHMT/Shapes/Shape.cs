@@ -27,17 +27,15 @@ namespace Lab01_DHMT.Shapes
             gl.Color(_color.R / 255.0, _color.G / 255.0, _color.B / 255.0);
         }
 
-        public void drawControlPoints(OpenGLControl gLControl)
+
+        public virtual void drawControlPoints(OpenGLControl gLControl)
         {
             /*Create a list control point contains 8 control points: 
              * 4 points in 4 angles and 4 points in mid of lines cover shape             
              */        
-            if (list_control_points != null)
-            {
+            
                 list_control_points = new List<Point>();
-            }
-            else
-            {
+            
                 list_control_points.Add(new Point(firstPoint.X, gLControl.Height - firstPoint.Y));
                 list_control_points.Add(new Point(secondPoint.X, gLControl.Height - firstPoint.Y));
                 list_control_points.Add(new Point(firstPoint.X, gLControl.Height - secondPoint.Y));
@@ -46,23 +44,27 @@ namespace Lab01_DHMT.Shapes
                 list_control_points.Add(new Point((firstPoint.X + secondPoint.X) / 2, gLControl.Height - secondPoint.Y));
                 list_control_points.Add(new Point(firstPoint.X, gLControl.Height- (firstPoint.Y+secondPoint.Y)/2));
                 list_control_points.Add(new Point(secondPoint.X, gLControl.Height-(firstPoint.Y+secondPoint.Y)/2));
-            }
-
+       
             var glCtrl = gLControl.OpenGL;
 
             //size control point
-            glCtrl.PointSize(10f);
+            glCtrl.PointSize(5f);
 
             //color
             Color clr = Color.Red;
-            glCtrl.Color(clr.R / 255, clr.G, clr.B);
+            glCtrl.Color(clr.R / 255.0, clr.G / 255.0, clr.B / 255.0);
 
             //draw
             glCtrl.Begin(OpenGL.GL_POINTS);
+
+            foreach (var lst in list_control_points)
+            {
+                glCtrl.Vertex((double)lst.X, lst.Y);
+            }
             list_control_points.ForEach(lst => glCtrl.Vertex(lst.X, lst.Y));
             glCtrl.End();
 
-            glCtrl.Flush();
+            //glCtrl.Flush();
         }
     }
 }
