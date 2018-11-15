@@ -14,16 +14,16 @@ namespace Lab01_DHMT
 {
     public partial class Form1 : Form
     {
-        static Point start = new Point(-1, -1), end;
+        static Point start = new Point(-1, -1), end, mouse_move_down = new Point(-1, -1), mouse_move_up;
         static Color color = Color.Black;
         static float size = 1.0f;                           /*thickness of shape*/
         static int chooseIcon;                              /*choose Shape icon*/
         static polygon plg = new polygon();                      /*poligon*/
-        static List<polygon> list_plg=new List<polygon>();  /*list poligon*/
+        static List<polygon> list_plg = new List<polygon>();  /*list poligon*/
         static bool mouseDown = false;
         static bool mouseLeft = false;
-        int mode=1;
-        /*mode=1: draw shape; mode=2 draw polygon*/
+        int mode = 1;
+        /*mode=1: draw shape; mode=2 draw polygon; mode=3: translate*/
 
 
         public Form1()
@@ -63,7 +63,7 @@ namespace Lab01_DHMT
             gl.Viewport(0, 0, openGLControl.Width, openGLControl.Height);
             gl.Ortho2D(0, openGLControl.Width, 0, openGLControl.Height);
         }
-         
+
         /*Draw shape*/
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs args)
         {
@@ -88,13 +88,14 @@ namespace Lab01_DHMT
                 if (mouseLeft == true)
                     plg.drawPolygon_1(openGLControl, color, size);
             }
-            
+
             //select shape
             else if (mode == 3)
             {
                 if (end.X != -1 && end.Y != -1)
                 {
                     Draw.Draw.DrawControlPoints(openGLControl, Draw.Draw.stackShape, list_plg, end);
+                    // Draw.Draw.translateShape(openGLControl, Draw.Draw.stackShape, list_plg, end);
                 }
             }
 
@@ -104,7 +105,7 @@ namespace Lab01_DHMT
             Draw.Draw.DrawShape(openGLControl);
 
             //print to textbox Time
-            tbTime.Text = clock.Milliseconds.ToString() + " ms";            
+            tbTime.Text = clock.Seconds.ToString() + " s " + clock.Milliseconds.ToString() + " ms";
         }
 
 
@@ -113,12 +114,19 @@ namespace Lab01_DHMT
         static TimeSpan clock;              /*time differencce*/
         private void openGLControl_MouseDown(object sender, MouseEventArgs e)
         {
-            start = e.Location;
-            end = start;
-            mouseDown = true;
-            
-            startTime = DateTime.Now;
+            if (mode == 1 || mode == 2)
+            {
+                start = e.Location;
+                end = start;
+                mouseDown = true;
+                startTime = DateTime.Now;
+            }
 
+            if (mode == 3)
+            {
+                mouse_move_down = e.Location;
+                mouseDown = true;
+            }
         }
         private void openGLControl_MouseMove(object sender, MouseEventArgs e)
         {
@@ -126,18 +134,20 @@ namespace Lab01_DHMT
             {
                 end = e.Location;
             }
+
         }
         private void openGLControl_MouseUp(object sender, MouseEventArgs e)
         {
-           //press left mouse anh draw shape
-            if (mode == 1 &&  e.Button==MouseButtons.Left)
+            //press left mouse anh draw shape
+            if (mode == 1 && e.Button == MouseButtons.Left)
             {
                 mouseDown = false;
                 end = e.Location;
                 clock = DateTime.Now.Subtract(startTime);
             }
 
-            if (mode == 2)//draw polygon
+            /*draw polygon*/
+            if (mode == 2)
             {
                 //end of drawing polygon
                 if (e.Button == MouseButtons.Right)
@@ -148,28 +158,34 @@ namespace Lab01_DHMT
 
                     mouseLeft = false;
                     clock += DateTime.Now.Subtract(startTime);
-                }else
+                }
+                else
                 if (e.Button == MouseButtons.Left)//continue drawing
                 {
                     plg.addPoint(e.Location);//call function addPoint(Point point) to add new point to list
-                    //startTime = DateTime.Now;
-                    //plg.addPoint(e.Location);
+
                     mouseLeft = true;
                     clock += DateTime.Now.Subtract(startTime);
                 }
+                mouseDown = false;
             }
 
+            /*select shape*/
             if (mode == 3 && e.Button == MouseButtons.Left)
             {
+                if (mouseDown == true && mouse_move_down.X != -1)
+                {
+                    end = e.Location;
+                    Draw.Draw.translateShape(openGLControl, end);
+                }
                 mouseDown = false;
-                end = e.Location;
-                //Draw.Draw.DrawControlPoints(openGLControl, Draw.Draw.stackShape, list_plg, end);
             }
-            if (chooseIcon < 1 && mode!=2)
+
+            if (chooseIcon < 1 && mode != 2)
                 clock = TimeSpan.Zero;
         }
-      
-        
+
+
         /*Choose color by click event*/
         private void pictureColor_Click(object sender, EventArgs e)
         {
@@ -180,7 +196,7 @@ namespace Lab01_DHMT
         }
 
 
-        /*choose shape by click event*/    
+        /*choose shape by click event*/
         private void line_Click(object sender, EventArgs e)
         {
             mode = 1;
@@ -239,8 +255,8 @@ namespace Lab01_DHMT
         private void selectShapeLb_Click(object sender, EventArgs e)
         {
             mode = 3;
-            end.X = -1;
-            end.Y = -1;
+            start.X = -1;
+            start.Y = -1;
         }
     }
 }
