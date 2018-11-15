@@ -17,7 +17,7 @@ namespace Lab01_DHMT.Shapes
         public Color _color;
         public Point _center;
         public int R; // radius
-        public List<Point> list_control_points=null;
+        public List<Point> list_control_points=new List<Point>();
 
         public virtual void Draw(OpenGLControl glControl)
         {
@@ -27,7 +27,7 @@ namespace Lab01_DHMT.Shapes
             gl.Color(_color.R / 255.0, _color.G / 255.0, _color.B / 255.0);
         }
 
-        public virtual void drawControlPoints(OpenGLControl gLControl)
+        public void drawControlPoints(OpenGLControl gLControl)
         {
             /*Create a list control point contains 8 control points: 
              * 4 points in 4 angles and 4 points in mid of lines cover shape             
@@ -51,7 +51,7 @@ namespace Lab01_DHMT.Shapes
             var glCtrl = gLControl.OpenGL;
 
             //size control point
-            glCtrl.PointSize(5f);
+            glCtrl.PointSize(10f);
 
             //color
             Color clr = Color.Red;

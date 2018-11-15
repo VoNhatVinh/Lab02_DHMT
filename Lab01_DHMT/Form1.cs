@@ -92,8 +92,7 @@ namespace Lab01_DHMT
             //select shape
             else if (mode == 3)
             {
-                //gọi hàm tính khoảng cách nhỏ nhất minDistance(Stack <Shape> shp, List <polygon> plg, e.location);
-                //gọi hàm vẽ nếu thỏa minDistance<epsilon (cần khai báo epsilon = const phía trên)
+                Draw.Draw.DrawControlPoints(openGLControl,Draw.Draw.stackShape, list_plg, end);
             }
 
             list_plg.ForEach(plgon => plgon.drawPolygon(openGLControl));
@@ -157,6 +156,11 @@ namespace Lab01_DHMT
                 }
             }
 
+            if (mode == 3 && e.Button == MouseButtons.Left)
+            {
+                mouseDown = false;
+                end = e.Location;
+            }
             if (chooseIcon < 1 && mode!=2)
                 clock = TimeSpan.Zero;
         }

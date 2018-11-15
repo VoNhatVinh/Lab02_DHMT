@@ -89,7 +89,7 @@ namespace Lab01_DHMT.Draw
         /*
         draw control points
         */
-        public static void DrawControlPoints(OpenGLControl openGLControl, List<polygon> list_plg, Point end)
+        public static void DrawControlPoints(OpenGLControl openGLControl,Stack<Shape> stackShape, List<polygon> list_plg, Point end)
         {
             int eps = 3;//epsilon
             bool inside = false;
@@ -108,7 +108,6 @@ namespace Lab01_DHMT.Draw
                 {
                     if ((fi_x - eps <= end.X && end.X <= se_x + eps) && (fi_y - eps <= end.Y && end.Y < se_y + eps))
                         inside = true;
-                    break;
                 }
                 
                 if(fi_x < se_x && fi_y > se_y)//firstPoint: botleft, secondPoint: topright
@@ -136,7 +135,9 @@ namespace Lab01_DHMT.Draw
                     break;
                 }
             }
-            if(inside == false)
+
+            //xet cac polygon
+            if(inside == false && list_plg != null)
             {
                 foreach(var pol in list_plg)
                 {
@@ -153,7 +154,6 @@ namespace Lab01_DHMT.Draw
                     {
                         if ((fi_x - eps <= end.X && end.X <= se_x + eps) && (fi_y - eps <= end.Y && end.Y < se_y + eps))
                             inside = true;
-                        break;
                     }
 
                     if (fi_x < se_x && fi_y > se_y)//firstPoint: botleft, secondPoint: topright
