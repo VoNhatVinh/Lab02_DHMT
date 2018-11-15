@@ -239,8 +239,8 @@ namespace Lab01_DHMT
         private void selectShapeLb_Click(object sender, EventArgs e)
         {
             mode = 3;
-            start.X = -1;
-            start.Y = -1;
+            end.X = -1;
+            end.Y = -1;
         }
     }
 }

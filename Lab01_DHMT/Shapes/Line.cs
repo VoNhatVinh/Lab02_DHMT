@@ -73,10 +73,10 @@ namespace Lab01_DHMT.Shapes
             {
                 glCtrl.Vertex((double)lst.X, lst.Y);
             }
-            list_control_points.ForEach(lst => glCtrl.Vertex(lst.X, lst.Y));
+            //list_control_points.ForEach(lst => glCtrl.Vertex(lst.X, lst.Y));
             glCtrl.End();
 
-            //glCtrl.Flush();
+            glCtrl.Flush();
         }
     }
 }
