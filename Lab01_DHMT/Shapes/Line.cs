@@ -22,6 +22,7 @@ namespace Lab01_DHMT.Shapes
             secondPoint = second;
             _size = size;
             _color = color;
+            _center = new Point((int)((first.X + second.X) / 2),(int)((first.Y + second.Y) / 2));
         }
 
         /*

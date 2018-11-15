@@ -75,6 +75,9 @@ namespace Lab01_DHMT.Shapes
             double delta_y = high * Math.Sin(angle / 2) / (Math.Sin(angle) + Math.Sin(angle / 2));
             double half_width = (secondPoint.X - firstPoint.X) / 2;
             double delta_x = half_width * Math.Cos(angle) / (Math.Cos(angle) + 0.5);
+            //set center
+            _center.X = (int)x_Center;
+            _center.Y = (int)((firstPoint.Y + 2 * secondPoint.Y + 2 * (firstPoint.Y - delta_y)) / 5);
 
             base.Draw(glControl);
             var glCtrl = glControl.OpenGL;
