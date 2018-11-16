@@ -31,8 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.selectShape_icon = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Rotate_lb = new System.Windows.Forms.Label();
+            this.Scale_lb = new System.Windows.Forms.Label();
             this.selectShapeLb = new System.Windows.Forms.Label();
             this.pnlDraw = new System.Windows.Forms.Panel();
             this.openGLControl = new SharpGL.OpenGLControl();
@@ -74,11 +76,9 @@
             this.selectShapett = new System.Windows.Forms.ToolTip(this.components);
             this.licencse = new System.Windows.Forms.ToolTip(this.components);
             this.Polygol = new System.Windows.Forms.ToolTip(this.components);
-            this.Scale_lb = new System.Windows.Forms.Label();
-            this.Rotate_lb = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.selectShape_icon)).BeginInit();
+            this.panel1.SuspendLayout();
             this.pnlDraw.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.pnlSize.SuspendLayout();
@@ -119,17 +119,6 @@
             this.pnlMain.Size = new System.Drawing.Size(1245, 426);
             this.pnlMain.TabIndex = 0;
             // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.Rotate_lb);
-            this.panel1.Controls.Add(this.Scale_lb);
-            this.panel1.Controls.Add(this.selectShapeLb);
-            this.panel1.Location = new System.Drawing.Point(552, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(158, 79);
-            this.panel1.TabIndex = 6;
-            // 
             // selectShape_icon
             // 
             this.selectShape_icon.Image = ((System.Drawing.Image)(resources.GetObject("selectShape_icon.Image")));
@@ -142,6 +131,41 @@
             this.licencse.SetToolTip(this.selectShape_icon, "Nope \'s license: Hồng Thanh Hoài, Trần Mạnh Thắng, Huỳnh Hoàng Huy, Huỳnh Minh Hu" +
         "ấn, Võ Nhật Vinh");
             this.selectShapett.SetToolTip(this.selectShape_icon, "Select Shape");
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.Rotate_lb);
+            this.panel1.Controls.Add(this.Scale_lb);
+            this.panel1.Controls.Add(this.selectShapeLb);
+            this.panel1.Location = new System.Drawing.Point(552, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(158, 79);
+            this.panel1.TabIndex = 6;
+            // 
+            // Rotate_lb
+            // 
+            this.Rotate_lb.AutoEllipsis = true;
+            this.Rotate_lb.AutoSize = true;
+            this.Rotate_lb.BackColor = System.Drawing.Color.Cornsilk;
+            this.Rotate_lb.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rotate_lb.Location = new System.Drawing.Point(75, 39);
+            this.Rotate_lb.Name = "Rotate_lb";
+            this.Rotate_lb.Size = new System.Drawing.Size(65, 36);
+            this.Rotate_lb.TabIndex = 3;
+            this.Rotate_lb.Text = "Rotate";
+            // 
+            // Scale_lb
+            // 
+            this.Scale_lb.AutoSize = true;
+            this.Scale_lb.BackColor = System.Drawing.Color.FloralWhite;
+            this.Scale_lb.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Scale_lb.Location = new System.Drawing.Point(13, 39);
+            this.Scale_lb.Name = "Scale_lb";
+            this.Scale_lb.Size = new System.Drawing.Size(56, 36);
+            this.Scale_lb.TabIndex = 2;
+            this.Scale_lb.Text = "Scale";
+            this.Scale_lb.Click += new System.EventHandler(this.Scale_lb_Click);
             // 
             // selectShapeLb
             // 
@@ -466,29 +490,6 @@
             // 
             this.toolTipHexagon.ToolTipTitle = "Draw hexagon";
             // 
-            // Scale_lb
-            // 
-            this.Scale_lb.AutoSize = true;
-            this.Scale_lb.BackColor = System.Drawing.Color.FloralWhite;
-            this.Scale_lb.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Scale_lb.Location = new System.Drawing.Point(13, 39);
-            this.Scale_lb.Name = "Scale_lb";
-            this.Scale_lb.Size = new System.Drawing.Size(56, 36);
-            this.Scale_lb.TabIndex = 2;
-            this.Scale_lb.Text = "Scale";
-            // 
-            // Rotate_lb
-            // 
-            this.Rotate_lb.AutoEllipsis = true;
-            this.Rotate_lb.AutoSize = true;
-            this.Rotate_lb.BackColor = System.Drawing.Color.Cornsilk;
-            this.Rotate_lb.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rotate_lb.Location = new System.Drawing.Point(75, 39);
-            this.Rotate_lb.Name = "Rotate_lb";
-            this.Rotate_lb.Size = new System.Drawing.Size(65, 36);
-            this.Rotate_lb.TabIndex = 3;
-            this.Rotate_lb.Text = "Rotate";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,9 +501,9 @@
             this.Name = "Form1";
             this.Text = "NOPE PAINT";
             this.pnlMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.selectShape_icon)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.selectShape_icon)).EndInit();
             this.pnlDraw.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             this.pnlSize.ResumeLayout(false);

@@ -92,6 +92,7 @@ namespace Lab01_DHMT.Shapes
         {
             int delta_x = end.X - start.X;
             int delta_y = end.Y - start.Y;
+
             for (int i = 0; i < plg.Count; i++)
             {
                 int temp1 = plg[i].X + delta_x;

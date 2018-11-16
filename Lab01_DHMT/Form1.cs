@@ -22,6 +22,7 @@ namespace Lab01_DHMT
         static List<polygon> list_plg = new List<polygon>();  /*list poligon*/
         static bool mouseDown = false;
         static bool mouseLeft = false;
+        static int control_point_order;
         int mode = 1;
         /*mode=1: draw shape; mode=2 draw polygon; mode=3: translate*/
 
@@ -115,9 +116,11 @@ namespace Lab01_DHMT
         /*mouse event manipulation and caculate time differ*/
         public DateTime startTime;          /*start time*/
         static TimeSpan clock;              /*time differencce*/
+
+
+        /*mouse event*/
         public bool selected = false;
         public bool mouse_move = false;
-
         private void openGLControl_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
@@ -138,19 +141,26 @@ namespace Lab01_DHMT
                     mouse_move_down = e.Location;
                     end = start;
                     mouseDown = true;
+                }               
+            }
+
+            //scale
+            if (mode == 4)
+            {
+                var control_point_order = Draw.Draw.selectedShape.inControlPoint(openGLControl, e.Location);
+                //check in the current control point shape and click on control point
+                if (Draw.Draw.CheckInside(openGLControl, Draw.Draw.stackShape, list_plg, start) == true
+                    && control_point_order != -1)
+                {
+                    mouse_move_down = e.Location;         
                 }
-               
             }
         }
-
-
         private void openGLControl_MouseMove(object sender, MouseEventArgs e)
-        {
-            
+        {           
             if (mouseDown == true)
             {
-                end = e.Location;
-               
+                end = e.Location;               
             }
 
             if (mode == 3)
@@ -165,10 +175,13 @@ namespace Lab01_DHMT
                     }
                 }
             }
+
+            if (mode == 4 && mouseDown == true && control_point_order != -1)
+            {
+                Draw.Draw.ScaleShape(openGLControl, control_point_order, end);
+                mouse_move_down = e.Location;
+            }
         }
-
-
-
         private void openGLControl_MouseUp(object sender, MouseEventArgs e)
         {
             //press left mouse anh draw shape
@@ -230,7 +243,6 @@ namespace Lab01_DHMT
                         {
                             end = e.Location;
                             Draw.Draw.Translate(openGLControl, start, end);
-                            // Draw.Draw.scale(openGLControl, start, end);
                             start = end;
                             // 
                         }
@@ -243,6 +255,17 @@ namespace Lab01_DHMT
 
                     if (chooseIcon < 1 && mode != 2)
                         clock = TimeSpan.Zero;
+                }
+            }
+
+            /*scale shape*/
+            if (mode == 4)
+            {
+                if (control_point_order != -1)
+                {
+                    Draw.Draw.ScaleShape(openGLControl, control_point_order, e.Location);
+                    control_point_order = -1;
+                    mouse_move_down = e.Location;
                 }
             }
         }
@@ -301,10 +324,6 @@ namespace Lab01_DHMT
             start.X = -1;
             start.Y = -1;
         }
-        private void polygon_icon_Click(object sender, EventArgs e)
-        {
-            mode = 2;
-        }
         private void hexagol_icon_Click(object sender, EventArgs e)
         {
             chooseIcon = 7;
@@ -312,6 +331,20 @@ namespace Lab01_DHMT
             start.X = -1;
             start.Y = -1;
         }
+        private void polygon_icon_Click(object sender, EventArgs e)
+        {
+            mode = 2;
+        }
+
+
+        /*scale shape by click event*/
+        private void Scale_lb_Click(object sender, EventArgs e)
+        {
+            mode = 4;
+            end.X = -1;
+            end.Y = -1;
+        }
+
 
         /*select shape by click event*/
         private void selectShapeLb_Click(object sender, EventArgs e)
