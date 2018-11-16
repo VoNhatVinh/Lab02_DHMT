@@ -319,10 +319,12 @@ namespace Lab01_DHMT.Draw
                     }
                 }
             }
+
             if (inside_shape == true || inside_polygon == true)
             {
                 check = true;
             }
+
             return check;
         }
 
@@ -340,6 +342,7 @@ namespace Lab01_DHMT.Draw
                     selectedShape.drawControlPoints(openGLControl);
                 }
             }
+
             if (inside_polygon == true)
             {
                 if (selectedPolygon != null)
@@ -354,65 +357,56 @@ namespace Lab01_DHMT.Draw
                     selectedPolygon.drawControlPoints(openGLControl);
                 }
             }
-
         }
 
         public static void Set(OpenGLControl openGLControl)
         {
             inside_shape = false;
             inside_polygon = false;
+
             if (selectedShape != null)
                 selectedShape = new Shape();
+
             if (selectedPolygon != null)
                 selectedPolygon = new polygon();
         }
 
-        public static void scale(OpenGLControl openGLControl, Point start, Point end)
+        public static void ScaleShape(OpenGLControl openGLControl, int control_position, Point end)
         {
             if (selectedShape != null)
             {
-                var glCtrl = openGLControl.OpenGL;
-                glCtrl.PushMatrix();
-                glCtrl.Scale(2, 1.5, 0);
-                selectedShape.Draw(openGLControl);
-                glCtrl.PopMatrix();
+                switch (control_position)
+                {
+                    case 0:
+                        selectedShape.firstPoint.X = end.X;
+                        selectedShape.firstPoint.Y = end.Y;
+                        break;
+                    case 1:
+                        selectedShape.secondPoint.X = end.X;
+                        selectedShape.firstPoint.Y = end.Y;
+                        break;
+                    case 2:
+                        selectedShape.firstPoint.X = end.X;
+                        selectedShape.secondPoint.Y = end.Y;
+                        break;
+                    case 3:
+                        selectedShape.secondPoint.X = end.X;
+                        selectedShape.secondPoint.Y = end.Y;
+                        break;
+                    case 4:
+                        selectedShape.firstPoint.Y = end.Y;
+                        break;
+                    case 5:
+                        selectedShape.secondPoint.Y = end.Y;
+                        break;
+                    case 6:
+                        selectedShape.firstPoint.X = end.X;
+                        break;
+                    case 7:
+                        selectedShape.secondPoint.X = end.X;
+                        break;
+                }
             }
         }
-
-
-        //public static void Translate(OpenGLControl openGLControl, Point start, Point end)
-        //{
-        //    //if click into the shape we begin translate shape
-
-        //    var glCtrl = openGLControl.OpenGL;
-        //    glCtrl.PushMatrix();
-        //    //if (selectedShape != null)
-        //    //{
-        //    //    //if (stackShape.Count > 0)
-        //    //    //{
-        //    //    //    var temp = stackShape.Pop();
-        //    //    //    /*only save shapes have different first point */
-        //    //    //    if (temp.firstPoint != selectedShape.firstPoint)
-        //    //    //    {
-        //    //    //        stackShape.Push(temp);
-        //    //    //    }
-        //    //    //}
-        //    //    selectedShape.firstPoint.X += end.X - start.X;
-        //    //    selectedShape.firstPoint.Y += end.Y - start.Y;
-        //    //    selectedShape.secondPoint.X += end.X - start.X;
-        //    //    selectedShape.secondPoint.Y += end.Y - start.Y;
-        //    //    selectedShape._center.X = (int)((selectedShape.firstPoint.X + selectedShape.secondPoint.X) / 2);
-        //    //    selectedShape._center.Y = (int)((selectedShape.firstPoint.Y + selectedShape.secondPoint.Y) / 2);
-        //    //}
-        //    if (selectedShape != null)
-        //    {
-        //        glCtrl.Translate(end.X - start.X, end.Y - start.Y, 0);
-        //        selectedShape.Draw(openGLControl);
-        //        selectedShape.drawControlPoints(openGLControl);
-        //    }
-
-        //    glCtrl.PopMatrix();
-        //    glCtrl.Flush();
-        //}
     }
 }

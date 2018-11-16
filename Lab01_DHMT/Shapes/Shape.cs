@@ -31,7 +31,12 @@ namespace Lab01_DHMT.Shapes
         public virtual void drawControlPoints(OpenGLControl gLControl)
         {
             /*Create a list control point contains 8 control points: 
-             * 4 points in 4 angles and 4 points in mid of lines cover shape             
+             * 4 points in 4 angles and 4 points in mid of lines cover shape   
+             *      0---------4----------1
+             *      |                    |
+             *      6                    7
+             *      |                    |
+             *      2---------5----------3
              */        
             
                 list_control_points = new List<Point>();
@@ -65,6 +70,23 @@ namespace Lab01_DHMT.Shapes
             glCtrl.End();
 
             //glCtrl.Flush();
+        }
+
+        /*This function return the index of control point*/
+        public int inControlPoint(OpenGLControl openGLControl, Point A)
+        {
+            int epsilon_square = 100;
+            double r_square;
+
+            for (int i=0; i<8; i++)
+            {
+                r_square = Math.Pow(list_control_points[i].X - A.X, 2) + Math.Pow(list_control_points[i].Y - (openGLControl.Height- A.Y), 2);
+                if (r_square <= epsilon_square)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }
