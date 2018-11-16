@@ -379,6 +379,7 @@ namespace Lab01_DHMT.Draw
             }
         }
 
+        
 
         //public static void Translate(OpenGLControl openGLControl, Point start, Point end)
         //{

@@ -95,7 +95,7 @@ namespace Lab01_DHMT
             {
                 if (Draw.Draw.CheckInside(openGLControl, Draw.Draw.stackShape, list_plg, start) == true)
                 {
-                    if (end.X != -1 && end.Y != -1 && mouseDown == false)
+                    if (end.X != -1 && end.Y != -1)
                     {
                         Draw.Draw.DrawControlPoints(openGLControl, Draw.Draw.stackShape, list_plg, end);
                     }
