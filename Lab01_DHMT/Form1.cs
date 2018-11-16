@@ -14,7 +14,7 @@ namespace Lab01_DHMT
 {
     public partial class Form1 : Form
     {
-        static Point start = new Point(-1, -1), end, mouse_move_down = new Point(-1, -1), mouse_move_up;
+        static Point start = new Point(-1, -1), end, mouse_move_down = new Point(-1, -1);
         static Color color = Color.Black;
         static float size = 1.0f;                           /*thickness of shape*/
         static int chooseIcon;                              /*choose Shape icon*/
@@ -64,6 +64,7 @@ namespace Lab01_DHMT
             gl.Ortho2D(0, openGLControl.Width, 0, openGLControl.Height);
         }
 
+
         /*Draw shape*/
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs args)
         {
@@ -92,10 +93,13 @@ namespace Lab01_DHMT
             //select shape
             else if (mode == 3)
             {
-                if (end.X != -1 && end.Y != -1)
+                if (Draw.Draw.CheckInside(openGLControl, Draw.Draw.stackShape, list_plg, start) == true)
                 {
-                    Draw.Draw.DrawControlPoints(openGLControl, Draw.Draw.stackShape, list_plg, end);
-                    // Draw.Draw.translateShape(openGLControl, Draw.Draw.stackShape, list_plg, end);
+                    if (end.X != -1 && end.Y != -1 && mouseDown == false)
+                    {
+                        Draw.Draw.DrawControlPoints(openGLControl, Draw.Draw.stackShape, list_plg, end);
+                        //Draw.Draw.translateShape(openGLControl, new Point(end.X - mouse_move_down.X, end.Y - mouse_move_down.Y), Draw.Draw.selectedShape);
+                    }
                 }
             }
 
@@ -112,8 +116,13 @@ namespace Lab01_DHMT
         /*mouse event manipulation and caculate time differ*/
         public DateTime startTime;          /*start time*/
         static TimeSpan clock;              /*time differencce*/
+        public bool selected = false;
+        public bool mouse_move = false;
+
         private void openGLControl_MouseDown(object sender, MouseEventArgs e)
         {
+            mouseDown = true;
+
             if (mode == 1 || mode == 2)
             {
                 start = e.Location;
@@ -124,24 +133,53 @@ namespace Lab01_DHMT
 
             if (mode == 3)
             {
-                mouse_move_down = e.Location;
-                mouseDown = true;
+                start = e.Location;
+                if (Draw.Draw.CheckInside(openGLControl, Draw.Draw.stackShape, list_plg, start) == true)
+                {
+                    mouse_move_down = e.Location;
+                    end = start;
+                    mouseDown = true;
+                }
+                //selected = true;
             }
         }
+
+
         private void openGLControl_MouseMove(object sender, MouseEventArgs e)
         {
+            //mouse_move = true;
             if (mouseDown == true)
             {
                 end = e.Location;
+                //mouse_move = true;
             }
 
+            if (mode == 3)
+            {
+                if (Draw.Draw.CheckInside(openGLControl, Draw.Draw.stackShape, list_plg, start) == true)
+                {
+                    if (mouseDown == true && e.Button == MouseButtons.Left)
+                    {
+                        end = e.Location;
+                        Draw.Draw.Translate(openGLControl, start, end);
+                        start = end;
+                        //mouse_move = true;
+                    }
+                    // else mouse_move= false;
+                }
+            }
         }
+
+
+
         private void openGLControl_MouseUp(object sender, MouseEventArgs e)
         {
+            //mouseDown = false;
             //press left mouse anh draw shape
             if (mode == 1 && e.Button == MouseButtons.Left)
             {
                 mouseDown = false;
+                //selected = false;
                 end = e.Location;
                 clock = DateTime.Now.Subtract(startTime);
             }
@@ -149,6 +187,7 @@ namespace Lab01_DHMT
             /*draw polygon*/
             if (mode == 2)
             {
+                selected = false;
                 //end of drawing polygon
                 if (e.Button == MouseButtons.Right)
                 {
@@ -160,29 +199,62 @@ namespace Lab01_DHMT
                     clock += DateTime.Now.Subtract(startTime);
                 }
                 else
-                if (e.Button == MouseButtons.Left)//continue drawing
-                {
-                    plg.addPoint(e.Location);//call function addPoint(Point point) to add new point to list
+                    if (e.Button == MouseButtons.Left)//continue drawing
+                    {
+                        plg.addPoint(e.Location);//call function addPoint(Point point) to add new point to list
 
-                    mouseLeft = true;
-                    clock += DateTime.Now.Subtract(startTime);
-                }
+                        mouseLeft = true;
+                        clock += DateTime.Now.Subtract(startTime);
+                    }
                 mouseDown = false;
             }
 
             /*select shape*/
-            if (mode == 3 && e.Button == MouseButtons.Left)
+            if (mode == 3)
             {
-                if (mouseDown == true && mouse_move_down.X != -1)
+                if (Draw.Draw.CheckInside(openGLControl, Draw.Draw.stackShape, list_plg, start) == true)
                 {
-                    end = e.Location;
-                    Draw.Draw.translateShape(openGLControl, end);
-                }
-                mouseDown = false;
-            }
+                    if (e.Button == MouseButtons.Right)
+                    {
+                        if (Draw.Draw.inside_shape == true)
+                        {
+                            Draw.Draw.stackShape.Push(Draw.Draw.selectedShape);
+                        }
+                        if (Draw.Draw.inside_polygon == true)
+                        {
+                            list_plg.Add(Draw.Draw.selectedPolygon);
+                        }
+                        Draw.Draw.Set(openGLControl);
+                        mouseLeft = false;
+                        mode = -1;
+                    }
+                    //Draw.Draw.stackShape.Push(Draw.Draw.selectedShape);
 
-            if (chooseIcon < 1 && mode != 2)
-                clock = TimeSpan.Zero;
+                            //mode = -1;
+                    //}
+                    else
+                    {
+                        if (mouseDown == true && mouse_move_down.X != -1 && mouse_move_down.Y != -1)
+                        {
+                            end = e.Location;
+                            //Draw.Draw.translateShape(openGLControl, new Point(end.X-mouse_move_down.X, end.Y-mouse_move_down.Y));
+                            Draw.Draw.Translate(openGLControl, start, end);
+                            // Draw.Draw.scale(openGLControl, start, end);
+                            start = end;
+                            // 
+                        }
+                        if (mouseDown == false)
+                            end = e.Location;
+                        Draw.Draw.Set(openGLControl);
+                    }
+
+                    mouseDown = false;
+                    //mouse_move = false;
+
+                    if (chooseIcon < 1 && mode != 2)
+                        clock = TimeSpan.Zero;
+                }
+            }
         }
 
 
@@ -254,9 +326,10 @@ namespace Lab01_DHMT
         /*select shape by click event*/
         private void selectShapeLb_Click(object sender, EventArgs e)
         {
+            //selected = true;
             mode = 3;
-            start.X = -1;
-            start.Y = -1;
+            end.X = -1;
+            end.Y = -1;
         }
     }
 }

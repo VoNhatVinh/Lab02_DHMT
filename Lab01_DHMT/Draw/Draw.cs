@@ -90,7 +90,8 @@ namespace Lab01_DHMT.Draw
         draw control points
         */
         // public bool inside = false;
-        public static Shape selectedShape;
+        public static Shape selectedShape = null;
+        public static polygon selectedPolygon = null;
         public static void DrawControlPoints(OpenGLControl openGLControl, Stack<Shape> stackShape, List<polygon> list_plg, Point mouse_position)
         {
             int eps = 10;//epsilon
@@ -143,9 +144,11 @@ namespace Lab01_DHMT.Draw
 
                 if (inside == true)
                 {
+                    if (selectedShape == null)
+                        selectedShape = new Shape();
                     selectedShape = pos;
                     pos.drawControlPoints(openGLControl);
-                    //inside = false;
+
                     glCtrl.Flush();
                     break;
                 }
@@ -202,7 +205,9 @@ namespace Lab01_DHMT.Draw
 
                     if (inside == true)
                     {
-                        selectedShape = pol;
+                        if (selectedPolygon == null)
+                            selectedPolygon = new polygon();
+                        selectedPolygon = pol;
                         pol.drawControlPoints(openGLControl);
                         glCtrl.Flush();
                         break;
@@ -214,15 +219,200 @@ namespace Lab01_DHMT.Draw
             glCtrl.Flush();
         }
 
-
-        public static void translateShape(OpenGLControl openGLControl, Point mouse_click)
+        public static bool inside_shape = false;
+        public static bool inside_polygon = false;
+        public static bool CheckInside(OpenGLControl openGLControl, Stack<Shape> stackShape, List<polygon> list_plg, Point mouse_position)
         {
-            //if click into the shape we begin translate shape
-            var glCtrl = openGLControl.OpenGL;
-            glCtrl.PushMatrix();
-            glCtrl.Translate(mouse_click.X + selectedShape.firstPoint.X, openGLControl.Height - (mouse_click.Y + selectedShape.firstPoint.Y), 0);
-            glCtrl.PopMatrix();
-            glCtrl.Flush();
+
+            bool check = false;
+            foreach (var pos in stackShape)
+            {
+                int fi_x = pos.firstPoint.X;
+                int fi_y = pos.firstPoint.Y;
+                int se_x = pos.secondPoint.X;
+                int se_y = pos.secondPoint.Y;
+
+                if (fi_x < se_x && fi_y < se_y)//firstPoint: topleft, secondPoint: botright
+                {
+                    if ((fi_x <= mouse_position.X && mouse_position.X <= se_x)
+                        && (fi_y <= mouse_position.Y && mouse_position.Y < se_y))
+                    {
+                        inside_shape = true;
+                    }
+                }
+
+                if (fi_x < se_x && fi_y > se_y)//firstPoint: botleft, secondPoint: topright
+                {
+                    if ((fi_x <= mouse_position.X && mouse_position.X <= se_x)
+                        && (fi_y <= mouse_position.Y && mouse_position.Y < se_y))
+                    {
+                        inside_shape = true;
+                    }
+                }
+
+                if (fi_x > se_x && fi_y < se_y)//firstPoint: topright, secondPoint: botleft
+                {
+                    if ((se_x <= mouse_position.X && mouse_position.X <= fi_x)
+                        && (fi_y <= mouse_position.Y && mouse_position.Y < se_y))
+                    {
+                        inside_shape = true;
+                    }
+                }
+
+                if (fi_x > se_x && fi_y > se_y)//firstPoint: botright, secondPoint: topleft
+                {
+                    if ((se_x <= mouse_position.X && mouse_position.X <= fi_x)
+                        && (fi_y <= mouse_position.Y && mouse_position.Y < se_y))
+                    {
+                        inside_shape = true;
+                    }
+                }
+            }
+
+            //xet cac polygon
+            if (inside_shape == false && list_plg != null)
+            {
+                foreach (var pol in list_plg)
+                {
+                    pol.SetData_ControlPoint(openGLControl);
+
+                    int fi_x = pol.firstPoint.X;
+                    int fi_y = pol.firstPoint.Y;
+                    int se_x = pol.secondPoint.X;
+                    int se_y = pol.secondPoint.Y;
+
+                    //We calculate position of click-mouse and edges of shape if this distance <=epsilon the inside=true 
+                    if (fi_x < se_x && fi_y < se_y)//firstPoint: topleft, secondPoint: botright
+                    {
+                        if ((fi_x <= mouse_position.X && mouse_position.X <= se_x)
+                            && (fi_y <= mouse_position.Y && mouse_position.Y < se_y))
+                        {
+                            inside_polygon = true;
+                        }
+                    }
+
+                    if (fi_x < se_x && fi_y > se_y)//firstPoint: botleft, secondPoint: topright
+                    {
+                        if ((fi_x <= mouse_position.X && mouse_position.X <= se_x)
+                            && (fi_y <= mouse_position.Y && mouse_position.Y < se_y))
+                        {
+                            inside_polygon = true;
+                        }
+                    }
+
+                    if (fi_x > se_x && fi_y < se_y)//firstPoint: topright, secondPoint: botleft
+                    {
+                        if ((se_x <= mouse_position.X && mouse_position.X <= fi_x)
+                            && (fi_y <= mouse_position.Y && mouse_position.Y < se_y))
+                        {
+                            inside_polygon = true;
+                        }
+                    }
+
+                    if (fi_x > se_x && fi_y > se_y)//firstPoint: botright, secondPoint: topleft
+                    {
+                        if ((se_x <= mouse_position.X && mouse_position.X <= fi_x)
+                            && (fi_y <= mouse_position.Y && mouse_position.Y < se_y))
+                        {
+                            inside_polygon = true;
+                        }
+                    }
+                }
+            }
+            if (inside_shape == true || inside_polygon == true)
+            {
+                check = true;
+            }
+            return check;
         }
+
+        public static void Translate(OpenGLControl openGLControl, Point start, Point end)
+        {
+            if (inside_shape == true)
+            {
+                if (selectedShape != null)
+                {
+                    selectedShape.firstPoint.X += end.X - start.X;
+                    selectedShape.firstPoint.Y += end.Y - start.Y;
+                    selectedShape.secondPoint.X += end.X - start.X;
+                    selectedShape.secondPoint.Y += end.Y - start.Y;
+                    selectedShape.Draw(openGLControl);
+                    selectedShape.drawControlPoints(openGLControl);
+                }
+            }
+            if (inside_polygon == true)
+            {
+                if (selectedPolygon != null)
+                {
+                    selectedPolygon.firstPoint.X += end.X - start.X;
+                    selectedPolygon.firstPoint.Y += end.Y - start.Y;
+                    selectedPolygon.secondPoint.X += end.X - start.X;
+                    selectedPolygon.secondPoint.Y += end.Y - start.Y;
+                    selectedPolygon.ChangePosition(openGLControl, start, end);
+                    //selectedPolygon.SetData_ControlPoint(openGLControl);
+                    selectedPolygon.drawPolygon(openGLControl);
+                    selectedPolygon.drawControlPoints(openGLControl);
+                }
+            }
+
+        }
+
+        public static void Set(OpenGLControl openGLControl)
+        {
+            inside_shape = false;
+            inside_polygon = false;
+            if (selectedShape != null)
+                selectedShape = new Shape();
+            if (selectedPolygon != null)
+                selectedPolygon = new polygon();
+        }
+
+        public static void scale(OpenGLControl openGLControl, Point start, Point end)
+        {
+            if (selectedShape != null)
+            {
+                var glCtrl = openGLControl.OpenGL;
+                glCtrl.PushMatrix();
+                glCtrl.Scale(2, 1.5, 0);
+                selectedShape.Draw(openGLControl);
+                glCtrl.PopMatrix();
+            }
+        }
+
+
+        //public static void Translate(OpenGLControl openGLControl, Point start, Point end)
+        //{
+        //    //if click into the shape we begin translate shape
+
+        //    var glCtrl = openGLControl.OpenGL;
+        //    glCtrl.PushMatrix();
+        //    //if (selectedShape != null)
+        //    //{
+        //    //    //if (stackShape.Count > 0)
+        //    //    //{
+        //    //    //    var temp = stackShape.Pop();
+        //    //    //    /*only save shapes have different first point */
+        //    //    //    if (temp.firstPoint != selectedShape.firstPoint)
+        //    //    //    {
+        //    //    //        stackShape.Push(temp);
+        //    //    //    }
+        //    //    //}
+        //    //    selectedShape.firstPoint.X += end.X - start.X;
+        //    //    selectedShape.firstPoint.Y += end.Y - start.Y;
+        //    //    selectedShape.secondPoint.X += end.X - start.X;
+        //    //    selectedShape.secondPoint.Y += end.Y - start.Y;
+        //    //    selectedShape._center.X = (int)((selectedShape.firstPoint.X + selectedShape.secondPoint.X) / 2);
+        //    //    selectedShape._center.Y = (int)((selectedShape.firstPoint.Y + selectedShape.secondPoint.Y) / 2);
+        //    //}
+        //    if (selectedShape != null)
+        //    {
+        //        glCtrl.Translate(end.X - start.X, end.Y - start.Y, 0);
+        //        selectedShape.Draw(openGLControl);
+        //        selectedShape.drawControlPoints(openGLControl);
+        //    }
+
+        //    glCtrl.PopMatrix();
+        //    glCtrl.Flush();
+        //}
     }
 }

@@ -16,13 +16,13 @@ namespace Lab01_DHMT.Shapes
             secondPoint = end;
             _size = size;
             _color = color;
-            //center of the shape
-            _center.X = (firstPoint.X + secondPoint.X) / 2;
-            _center.Y = (firstPoint.Y + secondPoint.Y) / 2;
         }
 
         public override void Draw(OpenGLControl glControl)
         {
+            //center of the shape
+            _center.X = (firstPoint.X + secondPoint.X) / 2;
+            _center.Y = (firstPoint.Y + secondPoint.Y) / 2;
 
             //radiusX and radiusY
             double ra_X = Math.Abs((firstPoint.X - secondPoint.X) / 2);

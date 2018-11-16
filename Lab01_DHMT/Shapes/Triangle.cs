@@ -48,12 +48,14 @@ namespace Lab01_DHMT.Shapes
             _size = size;
             _color = color;
 
-            _center.X = (int)((firstPoint.X + secondPoint.X) / 2);
-            _center.Y = (int)((2 * secondPoint.Y + firstPoint.Y) / 3);
         }
 
         public override void Draw(OpenGLControl glControl)
         {
+            //center
+            _center.X = (int)((firstPoint.X + secondPoint.X) / 2);
+            _center.Y = (int)((2 * secondPoint.Y + firstPoint.Y) / 3);
+
             double x_Center = (double)(firstPoint.X + secondPoint.X) / 2;
 
             base.Draw(glControl);

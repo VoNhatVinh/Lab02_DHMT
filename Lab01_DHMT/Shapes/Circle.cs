@@ -50,13 +50,15 @@ namespace Lab01_DHMT.Shapes
 
             _size = size;
             _color = color;
-            //center,width R
-            _center = new Point((int)((firstPoint.X + secondPoint.X) / 2), (int)((firstPoint.Y + secondPoint.Y) / 2));
-            R = (int)(Math.Abs(firstPoint.X - secondPoint.X) / 2);
+            
         }
 
         public override void Draw(OpenGLControl glControl)
         {
+            //center,width R
+            _center = new Point((int)((firstPoint.X + secondPoint.X) / 2), (int)((firstPoint.Y + secondPoint.Y) / 2));
+            R = (int)(Math.Abs(firstPoint.X - secondPoint.X) / 2);
+
             Point start = new Point(0, R);
 
             float x = 0;

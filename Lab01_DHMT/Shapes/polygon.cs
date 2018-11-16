@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Lab01_DHMT.Shapes
 {
-    public class polygon:Shape
+    public class polygon : Shape
     {
-        public List<Point> plg=null;//list that save the points to draw polygon
+        public List<Point> plg = null;//list that save the points to draw polygon
 
         public polygon()
         {
@@ -25,8 +25,9 @@ namespace Lab01_DHMT.Shapes
             plg.Add(point);
         }
 
+
         /*Draw with left mouse*/
-        public void drawPolygon_1(OpenGLControl glControl, Color _clr, float size)      
+        public void drawPolygon_1(OpenGLControl glControl, Color _clr, float size)
         {
             _color = _clr;
             _size = size;
@@ -35,7 +36,7 @@ namespace Lab01_DHMT.Shapes
 
             glControl.OpenGL.Begin(OpenGL.GL_LINE_LOOP);
             glControl.OpenGL.Color(_clr.R / 255.0, _clr.G / 255.0, _clr.B / 255.0);
-            plg.ForEach(plgon => glControl.OpenGL.Vertex(plgon.X, glControl.Height- plgon.Y));
+            plg.ForEach(plgon => glControl.OpenGL.Vertex(plgon.X, glControl.Height - plgon.Y));
             glControl.OpenGL.End();
 
             glControl.OpenGL.Flush();
@@ -54,6 +55,7 @@ namespace Lab01_DHMT.Shapes
 
             glControl.OpenGL.Flush();
         }
+
         public void SetData_ControlPoint(OpenGLControl gLControl)//set firstPoint and secondPoint
         {
             int sum_pos_x = 0;
@@ -83,6 +85,20 @@ namespace Lab01_DHMT.Shapes
             secondPoint = new Point(botright_x, botright_y);
 
             _center = new Point((int)(sum_pos_x / count), (int)(sum_pos_y / count));
+        }
+
+        //for the translate
+        public void ChangePosition(OpenGLControl glControl, Point start, Point end)
+        {
+            int delta_x = end.X - start.X;
+            int delta_y = end.Y - start.Y;
+            for (int i = 0; i < plg.Count; i++)
+            {
+                int temp1 = plg[i].X + delta_x;
+                int temp2 = plg[i].Y + delta_y;
+                plg[i] = new Point(temp1, temp2);
+            }
+            SetData_ControlPoint(glControl);
         }
     }
 }
