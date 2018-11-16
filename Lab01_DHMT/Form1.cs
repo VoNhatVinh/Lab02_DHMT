@@ -98,7 +98,6 @@ namespace Lab01_DHMT
                     if (end.X != -1 && end.Y != -1 && mouseDown == false)
                     {
                         Draw.Draw.DrawControlPoints(openGLControl, Draw.Draw.stackShape, list_plg, end);
-                        //Draw.Draw.translateShape(openGLControl, new Point(end.X - mouse_move_down.X, end.Y - mouse_move_down.Y), Draw.Draw.selectedShape);
                     }
                 }
             }
@@ -140,18 +139,18 @@ namespace Lab01_DHMT
                     end = start;
                     mouseDown = true;
                 }
-                //selected = true;
+               
             }
         }
 
 
         private void openGLControl_MouseMove(object sender, MouseEventArgs e)
         {
-            //mouse_move = true;
+            
             if (mouseDown == true)
             {
                 end = e.Location;
-                //mouse_move = true;
+               
             }
 
             if (mode == 3)
@@ -163,9 +162,7 @@ namespace Lab01_DHMT
                         end = e.Location;
                         Draw.Draw.Translate(openGLControl, start, end);
                         start = end;
-                        //mouse_move = true;
                     }
-                    // else mouse_move= false;
                 }
             }
         }
@@ -174,12 +171,10 @@ namespace Lab01_DHMT
 
         private void openGLControl_MouseUp(object sender, MouseEventArgs e)
         {
-            //mouseDown = false;
             //press left mouse anh draw shape
             if (mode == 1 && e.Button == MouseButtons.Left)
             {
                 mouseDown = false;
-                //selected = false;
                 end = e.Location;
                 clock = DateTime.Now.Subtract(startTime);
             }
@@ -228,16 +223,12 @@ namespace Lab01_DHMT
                         mouseLeft = false;
                         mode = -1;
                     }
-                    //Draw.Draw.stackShape.Push(Draw.Draw.selectedShape);
-
-                            //mode = -1;
-                    //}
+                   
                     else
                     {
                         if (mouseDown == true && mouse_move_down.X != -1 && mouse_move_down.Y != -1)
                         {
                             end = e.Location;
-                            //Draw.Draw.translateShape(openGLControl, new Point(end.X-mouse_move_down.X, end.Y-mouse_move_down.Y));
                             Draw.Draw.Translate(openGLControl, start, end);
                             // Draw.Draw.scale(openGLControl, start, end);
                             start = end;
@@ -249,7 +240,6 @@ namespace Lab01_DHMT
                     }
 
                     mouseDown = false;
-                    //mouse_move = false;
 
                     if (chooseIcon < 1 && mode != 2)
                         clock = TimeSpan.Zero;
@@ -326,7 +316,6 @@ namespace Lab01_DHMT
         /*select shape by click event*/
         private void selectShapeLb_Click(object sender, EventArgs e)
         {
-            //selected = true;
             mode = 3;
             end.X = -1;
             end.Y = -1;

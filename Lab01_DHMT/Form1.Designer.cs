@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.selectShape_icon = new System.Windows.Forms.PictureBox();
+            this.selectShapeLb = new System.Windows.Forms.Label();
             this.pnlDraw = new System.Windows.Forms.Panel();
             this.openGLControl = new SharpGL.OpenGLControl();
             this.pnlSize = new System.Windows.Forms.Panel();
@@ -68,11 +71,14 @@
             this.toolTipSize = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipColor = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipImageGroup = new System.Windows.Forms.ToolTip(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.selectShape_icon = new System.Windows.Forms.PictureBox();
-            this.selectShapeLb = new System.Windows.Forms.Label();
             this.selectShapett = new System.Windows.Forms.ToolTip(this.components);
+            this.licencse = new System.Windows.Forms.ToolTip(this.components);
+            this.Polygol = new System.Windows.Forms.ToolTip(this.components);
+            this.Scale_lb = new System.Windows.Forms.Label();
+            this.Rotate_lb = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.selectShape_icon)).BeginInit();
             this.pnlDraw.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.pnlSize.SuspendLayout();
@@ -91,8 +97,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.line_icon)).BeginInit();
             this.pnlControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbGroupImage)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.selectShape_icon)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -102,6 +106,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMain.BackColor = System.Drawing.Color.Transparent;
             this.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlMain.Controls.Add(this.selectShape_icon);
             this.pnlMain.Controls.Add(this.panel1);
             this.pnlMain.Controls.Add(this.pnlDraw);
             this.pnlMain.Controls.Add(this.pnlSize);
@@ -111,8 +116,44 @@
             this.pnlMain.Controls.Add(this.pnlControl);
             this.pnlMain.Location = new System.Drawing.Point(12, 12);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1114, 426);
+            this.pnlMain.Size = new System.Drawing.Size(1245, 426);
             this.pnlMain.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.Rotate_lb);
+            this.panel1.Controls.Add(this.Scale_lb);
+            this.panel1.Controls.Add(this.selectShapeLb);
+            this.panel1.Location = new System.Drawing.Point(552, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(158, 79);
+            this.panel1.TabIndex = 6;
+            // 
+            // selectShape_icon
+            // 
+            this.selectShape_icon.Image = ((System.Drawing.Image)(resources.GetObject("selectShape_icon.Image")));
+            this.selectShape_icon.Location = new System.Drawing.Point(1152, 2);
+            this.selectShape_icon.Name = "selectShape_icon";
+            this.selectShape_icon.Size = new System.Drawing.Size(86, 83);
+            this.selectShape_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.selectShape_icon.TabIndex = 0;
+            this.selectShape_icon.TabStop = false;
+            this.licencse.SetToolTip(this.selectShape_icon, "Nope \'s license: Hồng Thanh Hoài, Trần Mạnh Thắng, Huỳnh Hoàng Huy, Huỳnh Minh Hu" +
+        "ấn, Võ Nhật Vinh");
+            this.selectShapett.SetToolTip(this.selectShape_icon, "Select Shape");
+            // 
+            // selectShapeLb
+            // 
+            this.selectShapeLb.AutoSize = true;
+            this.selectShapeLb.BackColor = System.Drawing.Color.Linen;
+            this.selectShapeLb.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectShapeLb.Location = new System.Drawing.Point(2, 0);
+            this.selectShapeLb.Name = "selectShapeLb";
+            this.selectShapeLb.Size = new System.Drawing.Size(155, 36);
+            this.selectShapeLb.TabIndex = 1;
+            this.selectShapeLb.Text = "Select - Translate";
+            this.selectShapeLb.Click += new System.EventHandler(this.selectShapeLb_Click);
             // 
             // pnlDraw
             // 
@@ -122,7 +163,7 @@
             this.pnlDraw.Controls.Add(this.openGLControl);
             this.pnlDraw.Location = new System.Drawing.Point(4, 94);
             this.pnlDraw.Name = "pnlDraw";
-            this.pnlDraw.Size = new System.Drawing.Size(1103, 325);
+            this.pnlDraw.Size = new System.Drawing.Size(1234, 325);
             this.pnlDraw.TabIndex = 5;
             // 
             // openGLControl
@@ -138,7 +179,7 @@
             this.openGLControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControl.RenderContextType = SharpGL.RenderContextType.DIBSection;
             this.openGLControl.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
-            this.openGLControl.Size = new System.Drawing.Size(1103, 312);
+            this.openGLControl.Size = new System.Drawing.Size(1234, 324);
             this.openGLControl.TabIndex = 0;
             this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
             this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
@@ -152,18 +193,18 @@
             this.pnlSize.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlSize.Controls.Add(this.tbSize);
             this.pnlSize.Controls.Add(this.lbSize);
-            this.pnlSize.Location = new System.Drawing.Point(665, 2);
+            this.pnlSize.Location = new System.Drawing.Point(710, 2);
             this.pnlSize.Name = "pnlSize";
-            this.pnlSize.Size = new System.Drawing.Size(57, 79);
+            this.pnlSize.Size = new System.Drawing.Size(55, 79);
             this.pnlSize.TabIndex = 2;
             // 
             // tbSize
             // 
             this.tbSize.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbSize.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSize.Location = new System.Drawing.Point(3, 3);
+            this.tbSize.Location = new System.Drawing.Point(4, 4);
             this.tbSize.Name = "tbSize";
-            this.tbSize.Size = new System.Drawing.Size(45, 43);
+            this.tbSize.Size = new System.Drawing.Size(44, 43);
             this.tbSize.TabIndex = 1;
             this.tbSize.Text = "1";
             this.toolTipSize.SetToolTip(this.tbSize, "Fill size shape here");
@@ -185,7 +226,7 @@
             this.pnlTime.Controls.Add(this.tbTime);
             this.pnlTime.Controls.Add(this.time_icon);
             this.pnlTime.Controls.Add(this.lbTime);
-            this.pnlTime.Location = new System.Drawing.Point(913, 3);
+            this.pnlTime.Location = new System.Drawing.Point(956, 3);
             this.pnlTime.Name = "pnlTime";
             this.pnlTime.Size = new System.Drawing.Size(190, 80);
             this.pnlTime.TabIndex = 4;
@@ -223,7 +264,7 @@
             this.pnlColors.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlColors.Controls.Add(this.pictureColor);
             this.pnlColors.Controls.Add(this.lbColors);
-            this.pnlColors.Location = new System.Drawing.Point(728, 2);
+            this.pnlColors.Location = new System.Drawing.Point(771, 3);
             this.pnlColors.Name = "pnlColors";
             this.pnlColors.Size = new System.Drawing.Size(179, 81);
             this.pnlColors.TabIndex = 3;
@@ -278,6 +319,7 @@
             this.polygon_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.polygon_icon.TabIndex = 10;
             this.polygon_icon.TabStop = false;
+            this.Polygol.SetToolTip(this.polygon_icon, "Draw polygol");
             this.polygon_icon.Click += new System.EventHandler(this.polygon_icon_Click);
             // 
             // hexagol_icon
@@ -385,7 +427,7 @@
             this.pnlControl.Controls.Add(this.ptbGroupImage);
             this.pnlControl.Location = new System.Drawing.Point(4, 0);
             this.pnlControl.Name = "pnlControl";
-            this.pnlControl.Size = new System.Drawing.Size(234, 84);
+            this.pnlControl.Size = new System.Drawing.Size(365, 84);
             this.pnlControl.TabIndex = 0;
             // 
             // groupName
@@ -406,9 +448,9 @@
             // 
             this.ptbGroupImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ptbGroupImage.Image = ((System.Drawing.Image)(resources.GetObject("ptbGroupImage.Image")));
-            this.ptbGroupImage.Location = new System.Drawing.Point(0, 2);
+            this.ptbGroupImage.Location = new System.Drawing.Point(0, 1);
             this.ptbGroupImage.Name = "ptbGroupImage";
-            this.ptbGroupImage.Size = new System.Drawing.Size(97, 73);
+            this.ptbGroupImage.Size = new System.Drawing.Size(97, 74);
             this.ptbGroupImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptbGroupImage.TabIndex = 1;
             this.ptbGroupImage.TabStop = false;
@@ -424,49 +466,43 @@
             // 
             this.toolTipHexagon.ToolTipTitle = "Draw hexagon";
             // 
-            // panel1
+            // Scale_lb
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.selectShape_icon);
-            this.panel1.Controls.Add(this.selectShapeLb);
-            this.panel1.Location = new System.Drawing.Point(552, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(107, 79);
-            this.panel1.TabIndex = 6;
+            this.Scale_lb.AutoSize = true;
+            this.Scale_lb.BackColor = System.Drawing.Color.FloralWhite;
+            this.Scale_lb.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Scale_lb.Location = new System.Drawing.Point(13, 39);
+            this.Scale_lb.Name = "Scale_lb";
+            this.Scale_lb.Size = new System.Drawing.Size(56, 36);
+            this.Scale_lb.TabIndex = 2;
+            this.Scale_lb.Text = "Scale";
             // 
-            // selectShape_icon
+            // Rotate_lb
             // 
-            this.selectShape_icon.Image = ((System.Drawing.Image)(resources.GetObject("selectShape_icon.Image")));
-            this.selectShape_icon.Location = new System.Drawing.Point(0, 1);
-            this.selectShape_icon.Name = "selectShape_icon";
-            this.selectShape_icon.Size = new System.Drawing.Size(104, 47);
-            this.selectShape_icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.selectShape_icon.TabIndex = 0;
-            this.selectShape_icon.TabStop = false;
-            this.selectShapett.SetToolTip(this.selectShape_icon, "Select Shape");
-            // 
-            // selectShapeLb
-            // 
-            this.selectShapeLb.AutoSize = true;
-            this.selectShapeLb.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectShapeLb.Location = new System.Drawing.Point(19, 43);
-            this.selectShapeLb.Name = "selectShapeLb";
-            this.selectShapeLb.Size = new System.Drawing.Size(63, 36);
-            this.selectShapeLb.TabIndex = 1;
-            this.selectShapeLb.Text = "Select";
-            this.selectShapeLb.Click += new System.EventHandler(this.selectShapeLb_Click);
+            this.Rotate_lb.AutoEllipsis = true;
+            this.Rotate_lb.AutoSize = true;
+            this.Rotate_lb.BackColor = System.Drawing.Color.Cornsilk;
+            this.Rotate_lb.Font = new System.Drawing.Font("VNI-Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rotate_lb.Location = new System.Drawing.Point(75, 39);
+            this.Rotate_lb.Name = "Rotate_lb";
+            this.Rotate_lb.Size = new System.Drawing.Size(65, 36);
+            this.Rotate_lb.TabIndex = 3;
+            this.Rotate_lb.Text = "Rotate";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1138, 450);
+            this.ClientSize = new System.Drawing.Size(1269, 450);
             this.Controls.Add(this.pnlMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "NOPE PAINT";
             this.pnlMain.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.selectShape_icon)).EndInit();
             this.pnlDraw.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             this.pnlSize.ResumeLayout(false);
@@ -490,9 +526,6 @@
             this.pnlControl.ResumeLayout(false);
             this.pnlControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbGroupImage)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.selectShape_icon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -541,5 +574,9 @@
         private System.Windows.Forms.PictureBox selectShape_icon;
         private System.Windows.Forms.ToolTip selectShapett;
         private System.Windows.Forms.Label selectShapeLb;
+        private System.Windows.Forms.ToolTip licencse;
+        private System.Windows.Forms.ToolTip Polygol;
+        private System.Windows.Forms.Label Rotate_lb;
+        private System.Windows.Forms.Label Scale_lb;
     }
 }
